@@ -8,9 +8,9 @@ type BankBalanceSummaryCardsProps = {
 
 export function BankBalanceSummaryCards({ totals }: BankBalanceSummaryCardsProps) {
   const items = [
-    { label: 'Ingreso Real', value: totals.totalRealIncome, icon: DollarSign, color: 'text-primary' },
-    { label: 'Presupuesto', value: totals.totalBudget, icon: BarChart3, color: 'text-info' },
-    { label: 'Expenses', value: totals.totalExpenses, icon: Receipt, color: 'text-warning' },
+    { label: 'Ingreso Real', value: totals.totalRealIncome, icon: DollarSign, color: 'text-muted-foreground' },
+    { label: 'Presupuesto', value: totals.totalBudget, icon: BarChart3, color: 'text-muted-foreground' },
+    { label: 'Expenses', value: totals.totalExpenses, icon: Receipt, color: 'text-muted-foreground' },
     {
       label: 'Diferencia',
       value: totals.totalDifference,
@@ -20,11 +20,11 @@ export function BankBalanceSummaryCards({ totals }: BankBalanceSummaryCardsProps
   ];
 
   return (
-    <div className="grid grid-cols-4 gap-3 mb-5">
+    <div className="grid grid-cols-4 gap-2 mb-3">
       {items.map((item) => (
-        <div key={item.label} className="bg-secondary/30 rounded-xl p-3 text-center">
+        <div key={item.label} className="planner-panel p-2 text-center">
           <item.icon className={`w-4 h-4 mx-auto mb-1 ${item.color}`} />
-          <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-0.5">{item.label}</p>
+          <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{item.label}</p>
           <p className={`font-display font-bold text-sm ${item.label === 'Diferencia' ? item.color : ''}`}>
             {formatUSD(item.value)}
           </p>

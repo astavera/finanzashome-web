@@ -133,6 +133,32 @@
     @apply bg-card/70 backdrop-blur-xl border border-border/50 rounded-2xl;
   }
 
+  .planner-card {
+    @apply rounded-lg border border-border bg-card shadow-none;
+  }
+
+  .planner-panel {
+    @apply rounded-md border border-border/70 bg-muted/35;
+  }
+
+  .planner-table-head {
+    @apply border-b border-border bg-muted/60;
+  }
+
+  .planner-input {
+    @apply h-7 rounded-md border-border bg-background text-right text-xs font-medium shadow-none transition-colors hover:border-foreground/25 focus-visible:ring-1 focus-visible:ring-foreground/20;
+  }
+
+  .no-number-spinner {
+    -moz-appearance: textfield;
+  }
+
+  .no-number-spinner::-webkit-outer-spin-button,
+  .no-number-spinner::-webkit-inner-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+  }
+
   .glass-card-hover {
     @apply glass-card transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5;
   }

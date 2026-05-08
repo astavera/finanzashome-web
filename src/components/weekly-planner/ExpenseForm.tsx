@@ -68,41 +68,41 @@ export function ExpenseForm({ open, onOpenChange, onSave, initialData, weekNumbe
         <div className="space-y-4">
           <div>
             <Label className="text-xs text-muted-foreground">Concept</Label>
-            <Input value={form.concept} onChange={(e) => setForm({ ...form, concept: e.target.value })} className="bg-secondary/30 mt-1" placeholder="e.g. Renta, Mercado" />
+            <Input value={form.concept} onChange={(e) => setForm({ ...form, concept: e.target.value })} className="mt-1 bg-background" placeholder="e.g. Renta, Mercado" />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
               <Label className="text-xs text-muted-foreground">Amount (USD)</Label>
-              <Input type="number" value={form.amount} onChange={(e) => setForm({ ...form, amount: e.target.value })} className="bg-secondary/30 mt-1" placeholder="0.00" />
+              <Input type="number" value={form.amount} onChange={(e) => setForm({ ...form, amount: e.target.value })} className="no-number-spinner mt-1 bg-background" placeholder="0.00" />
             </div>
             <div>
               <Label className="text-xs text-muted-foreground">Date</Label>
-              <Input type="date" value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} className="bg-secondary/30 mt-1" />
+              <Input type="date" value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} className="mt-1 bg-background" />
             </div>
           </div>
           <div className="grid grid-cols-3 gap-3">
             <div>
               <Label className="text-xs text-muted-foreground">Who Pays</Label>
-              <select value={form.paid_by} onChange={(e) => setForm({ ...form, paid_by: e.target.value })} className="w-full bg-secondary/30 border border-border rounded-lg px-3 py-2 text-sm mt-1">
+              <select value={form.paid_by} onChange={(e) => setForm({ ...form, paid_by: e.target.value })} className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm">
                 {PAID_BY_OPTIONS.map((p) => <option key={p} value={p}>{p}</option>)}
               </select>
             </div>
             <div>
               <Label className="text-xs text-muted-foreground">Status</Label>
-              <select value={form.status} onChange={(e) => setForm({ ...form, status: e.target.value as ExpenseStatus })} className="w-full bg-secondary/30 border border-border rounded-lg px-3 py-2 text-sm mt-1">
+              <select value={form.status} onChange={(e) => setForm({ ...form, status: e.target.value as ExpenseStatus })} className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm">
                 {STATUS_OPTIONS.map((s) => <option key={s} value={s}>{s}</option>)}
               </select>
             </div>
             <div>
               <Label className="text-xs text-muted-foreground">Category</Label>
-              <select value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} className="w-full bg-secondary/30 border border-border rounded-lg px-3 py-2 text-sm mt-1">
+              <select value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm">
                 {EXPENSE_CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
               </select>
             </div>
           </div>
           <div>
             <Label className="text-xs text-muted-foreground">Notes (optional)</Label>
-            <Input value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} className="bg-secondary/30 mt-1" placeholder="Add a note..." />
+            <Input value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} className="mt-1 bg-background" placeholder="Add a note..." />
           </div>
           <div className="flex gap-2 pt-2">
             <Button variant="outline" className="flex-1" onClick={() => onOpenChange(false)}>Cancel</Button>

@@ -47,7 +47,7 @@ export function WeekCard({
 
   return (
     <>
-      <div className="rounded-xl border border-border/60 bg-card/70 p-4 shadow-sm">
+      <div className="planner-card p-3">
         <WeekCardSummary
           week={week}
           weeklyIncome={weeklyIncome}
@@ -63,6 +63,7 @@ export function WeekCard({
           expenses={expenses}
           totalExpenses={totalExpenses}
           onStatusChange={onStatusChange}
+          onUpdateExpense={onUpdateExpense}
           onEdit={(expense) => {
             setEditingExpense(expense);
             setShowForm(true);

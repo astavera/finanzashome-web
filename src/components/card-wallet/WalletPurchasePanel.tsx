@@ -1,6 +1,7 @@
 import type { CreditCard, Transaction } from '@/lib/types';
 import { RecentCardActivity } from './RecentCardActivity';
 import { WalletPurchaseFormPanel } from './WalletPurchaseFormPanel';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export type WalletPurchaseForm = {
   merchant: string;
@@ -29,19 +30,27 @@ export function WalletPurchasePanel({
   saving: boolean;
 }) {
   return (
-    <div className="relative overflow-hidden rounded-[34px] border border-slate-200/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(248,250,252,0.94))] shadow-[0_24px_60px_-32px_rgba(15,23,42,0.38)] dark:border-white/10 dark:bg-[linear-gradient(180deg,rgba(15,23,42,0.98),rgba(2,6,23,0.96))]">
-      <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-slate-400/40 to-transparent" />
-      <div className="space-y-5 p-6">
-        <WalletPurchaseFormPanel
-          selectedCard={selectedCard}
-          form={form}
-          onFormChange={onFormChange}
-          onSubmit={onSubmit}
-          onClear={onClear}
-          saving={saving}
-        />
-        <RecentCardActivity selectedCard={selectedCard} recentTransactions={recentTransactions} />
-      </div>
+    <div className="relative min-h-[310px] overflow-hidden rounded-[24px] border border-slate-200/70 bg-white/95 shadow-[0_14px_34px_-26px_rgba(15,23,42,0.42)] dark:border-white/10 dark:bg-slate-950/95">
+      <Tabs defaultValue="purchase" className="p-3.5">
+        <TabsList className="grid h-10 w-full grid-cols-2 rounded-xl bg-slate-100 p-1 dark:bg-white/8">
+          <TabsTrigger value="purchase" className="rounded-lg text-xs">Compra</TabsTrigger>
+          <TabsTrigger value="activity" className="rounded-lg text-xs">Actividad</TabsTrigger>
+        </TabsList>
+        <TabsContent value="purchase" className="mt-3">
+          <WalletPurchaseFormPanel
+            selectedCard={selectedCard}
+            form={form}
+            onFormChange={onFormChange}
+            onSubmit={onSubmit}
+            onClear={onClear}
+            saving={saving}
+            compact
+          />
+        </TabsContent>
+        <TabsContent value="activity" className="mt-3">
+          <RecentCardActivity selectedCard={selectedCard} recentTransactions={recentTransactions} compact />
+        </TabsContent>
+      </Tabs>
     </div>
   );
 }

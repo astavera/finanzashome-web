@@ -63,7 +63,7 @@ export function CarPayoffPlan({
   };
 
   return (
-    <div className="glass-card p-6">
+    <div className="planner-card p-4">
       <CarPayoffHeader />
       <CarPayoffMetricGrid
         baseDebtToday={metrics.baseDebtToday}

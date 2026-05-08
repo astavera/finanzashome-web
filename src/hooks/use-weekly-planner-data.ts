@@ -46,6 +46,27 @@ export function useWeeklyPlannerData(monthDate = new Date()) {
   const updateExpenseMutation = useMutation({
     mutationFn: ({ id, updates }: { id: string; updates: Partial<WeeklyExpense> }) =>
       updateWeeklyExpense(id, updates),
+    onMutate: async ({ id, updates }) => {
+      await queryClient.cancelQueries({ queryKey: ['weekly-expenses'] });
+      const previousWeeklyExpenses = queryClient.getQueriesData<WeeklyExpense[]>({
+        queryKey: ['weekly-expenses'],
+      });
+
+      queryClient.setQueriesData<WeeklyExpense[]>({ queryKey: ['weekly-expenses'] }, (current) => {
+        if (!current) return current;
+
+        return current.map((expense) => (
+          expense.id === id ? { ...expense, ...updates } : expense
+        ));
+      });
+
+      return { previousWeeklyExpenses };
+    },
+    onError: (_error, _variables, context) => {
+      context?.previousWeeklyExpenses.forEach(([queryKey, data]) => {
+        queryClient.setQueryData(queryKey, data);
+      });
+    },
     onSuccess: invalidateWeeklyExpenseQueries,
   });
 

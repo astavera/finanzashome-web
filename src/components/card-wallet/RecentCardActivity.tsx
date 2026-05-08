@@ -5,9 +5,43 @@ import type { CreditCard, Transaction } from '@/lib/types';
 type RecentCardActivityProps = {
   selectedCard: CreditCard;
   recentTransactions: Transaction[];
+  compact?: boolean;
 };
 
-export function RecentCardActivity({ selectedCard, recentTransactions }: RecentCardActivityProps) {
+export function RecentCardActivity({ selectedCard, recentTransactions, compact = false }: RecentCardActivityProps) {
+  if (compact) {
+    return (
+      <div>
+        <div className="mb-2">
+          <h2 className="font-display text-base font-semibold text-slate-950 dark:text-white">Actividad reciente</h2>
+          <p className="text-xs text-slate-500 dark:text-slate-400">{selectedCard.card_name}</p>
+        </div>
+
+        {recentTransactions.length === 0 ? (
+          <div className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-4 text-center text-xs text-slate-500 dark:border-white/10 dark:bg-white/5 dark:text-slate-400">
+            Aun no hay compras registradas.
+          </div>
+        ) : (
+          <div className="grid gap-1.5">
+            {recentTransactions.map((transaction) => (
+              <div key={transaction.id} className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 dark:border-white/10 dark:bg-white/5">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-medium text-slate-950 dark:text-white">{transaction.merchant}</p>
+                    <p className="mt-0.5 text-[11px] text-slate-500 dark:text-slate-400">
+                      {transaction.date} - {transaction.category} - {transaction.paid_by}
+                    </p>
+                  </div>
+                  <p className="shrink-0 text-xs font-semibold text-slate-950 dark:text-white">{formatUSD(transaction.amount)}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className="relative overflow-hidden rounded-[30px] border border-white/10 bg-[linear-gradient(180deg,rgba(15,23,42,0.98),rgba(30,41,59,0.98))] p-6 text-white shadow-[0_24px_60px_-32px_rgba(15,23,42,0.45)] dark:border-white/10">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.12),transparent_26%)]" />

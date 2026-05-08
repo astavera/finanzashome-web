@@ -13,6 +13,7 @@ type WalletPurchaseFormPanelProps = {
   onSubmit: () => void;
   onClear: () => void;
   saving: boolean;
+  compact?: boolean;
 };
 
 export function WalletPurchaseFormPanel({
@@ -22,7 +23,95 @@ export function WalletPurchaseFormPanel({
   onSubmit,
   onClear,
   saving,
+  compact = false,
 }: WalletPurchaseFormPanelProps) {
+  if (compact) {
+    return (
+      <div>
+        <div className="mb-2 flex items-center justify-between gap-3">
+          <div>
+            <h2 className="font-display text-base font-semibold text-slate-950 dark:text-white">Nueva compra</h2>
+            <p className="text-xs text-slate-500 dark:text-slate-400">{selectedCard.card_name} **** {selectedCard.last4}</p>
+          </div>
+        </div>
+
+        <div className="grid gap-2.5">
+          <Input
+            value={form.merchant}
+            onChange={(event) => onFormChange({ merchant: event.target.value })}
+            className="h-10 rounded-xl border-slate-200 bg-slate-50 text-sm dark:border-white/10 dark:bg-white/5"
+            placeholder="Comercio"
+          />
+          <div className="grid grid-cols-2 gap-2">
+            <Input
+              type="number"
+              value={form.amount}
+              onChange={(event) => onFormChange({ amount: event.target.value })}
+              className="no-number-spinner h-10 rounded-xl border-slate-200 bg-slate-50 text-sm dark:border-white/10 dark:bg-white/5"
+              placeholder="Monto"
+              min={0}
+              step="0.01"
+            />
+            <Input
+              type="date"
+              value={form.date}
+              onChange={(event) => onFormChange({ date: event.target.value })}
+              className="h-10 rounded-xl border-slate-200 bg-slate-50 text-sm dark:border-white/10 dark:bg-white/5"
+            />
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            <select
+              value={form.category}
+              onChange={(event) => onFormChange({ category: event.target.value })}
+              className="h-10 rounded-xl border border-slate-200 bg-slate-50 px-3 text-xs text-slate-700 outline-none dark:border-white/10 dark:bg-white/5 dark:text-slate-200"
+            >
+              {EXPENSE_CATEGORIES.map((category) => (
+                <option key={category} value={category} className="bg-white text-slate-950 dark:bg-slate-900 dark:text-white">
+                  {category}
+                </option>
+              ))}
+            </select>
+            <select
+              value={form.paid_by}
+              onChange={(event) => onFormChange({ paid_by: event.target.value })}
+              className="h-10 rounded-xl border border-slate-200 bg-slate-50 px-3 text-xs text-slate-700 outline-none dark:border-white/10 dark:bg-white/5 dark:text-slate-200"
+            >
+              {PAID_BY_OPTIONS.map((person) => (
+                <option key={person} value={person} className="bg-white text-slate-950 dark:bg-slate-900 dark:text-white">
+                  {person}
+                </option>
+              ))}
+            </select>
+          </div>
+          <Input
+            value={form.notes}
+            onChange={(event) => onFormChange({ notes: event.target.value })}
+            className="h-10 rounded-xl border-slate-200 bg-slate-50 text-sm dark:border-white/10 dark:bg-white/5"
+            placeholder="Notas opcionales"
+          />
+        </div>
+
+        <div className="mt-3 grid grid-cols-[1fr_auto] gap-2">
+          <Button
+            className="h-10 rounded-xl !bg-slate-950 px-4 text-xs !text-white hover:!bg-slate-900 dark:!bg-slate-100 dark:!text-slate-950"
+            disabled={saving}
+            onClick={onSubmit}
+          >
+            <Plus className="mr-1.5 h-3.5 w-3.5" />
+            {saving ? 'Guardando...' : 'Registrar'}
+          </Button>
+          <Button
+            variant="outline"
+            className="h-10 rounded-xl px-3 text-xs"
+            onClick={onClear}
+          >
+            Limpiar
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="mb-6 flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
@@ -93,7 +182,7 @@ export function WalletPurchaseFormPanel({
             className="mt-2 h-14 w-full rounded-[20px] border border-slate-900/70 bg-slate-950 px-4 text-sm text-white shadow-none outline-none focus:ring-2 focus:ring-slate-400"
           >
             {EXPENSE_CATEGORIES.map((category) => (
-              <option key={category} value={category}>
+              <option key={category} value={category} className="bg-white text-slate-950 dark:bg-slate-900 dark:text-white">
                 {category}
               </option>
             ))}
@@ -110,7 +199,7 @@ export function WalletPurchaseFormPanel({
             className="mt-2 h-14 w-full rounded-[20px] border border-slate-900/70 bg-slate-950 px-4 text-sm text-white shadow-none outline-none focus:ring-2 focus:ring-slate-400"
           >
             {PAID_BY_OPTIONS.map((person) => (
-              <option key={person} value={person}>
+              <option key={person} value={person} className="bg-white text-slate-950 dark:bg-slate-900 dark:text-white">
                 {person}
               </option>
             ))}

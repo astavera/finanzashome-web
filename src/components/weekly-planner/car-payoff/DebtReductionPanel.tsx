@@ -16,11 +16,11 @@ export function DebtReductionPanel({
   totalAppliedPayments,
 }: DebtReductionPanelProps) {
   return (
-    <div className="bg-secondary/20 rounded-xl p-4 mb-5">
+    <div className="planner-panel p-3 mb-3">
       <div className="flex items-center justify-between">
         <div>
           <p className="text-xs text-muted-foreground">Reduccion aplicada a la deuda</p>
-          <p className="font-display font-bold text-lg text-positive">{formatUSD(totalAppliedPayments)}</p>
+          <p className="font-display font-semibold text-base text-positive">{formatUSD(totalAppliedPayments)}</p>
           <p className="text-[10px] text-muted-foreground">
             Anteriores: {formatUSD(appliedPaymentsToDate)} | Semanas actuales: {formatUSD(paidWeeklyExtra)} |
             Pago mensual: {monthlyPaid ? formatUSD(principalFromPayment) : 'pendiente'}

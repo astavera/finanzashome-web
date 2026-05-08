@@ -12,19 +12,19 @@ type WeeklyExtraSavingsGridProps = {
 
 export function WeeklyExtraSavingsGrid({ carPayoff, onUpdate }: WeeklyExtraSavingsGridProps) {
   return (
-    <div className="mb-5">
-      <div className="flex items-center gap-2 mb-3">
-        <TrendingDown className="w-4 h-4 text-positive" />
+    <div className="mb-3">
+      <div className="flex items-center gap-2 mb-2">
+        <TrendingDown className="w-4 h-4 text-muted-foreground" />
         <span className="text-sm font-medium">Abonos Semanales Extra - Fondo Pay-off</span>
         <span className="text-xs text-muted-foreground ml-auto">{formatUSD(WEEKLY_EXTRA_TARGET)}/semana</span>
       </div>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
         {carPayoff.map((week) => (
           <div
             key={week.week}
             className={cn(
-              'rounded-xl p-4 transition-all border-2',
-              week.saved ? 'bg-positive/10 border-positive/30' : 'bg-secondary/20 border-transparent',
+              'rounded-md border p-2.5 transition-colors',
+              week.saved ? 'border-foreground/25 bg-muted/45' : 'border-border bg-muted/20',
             )}
           >
             <label className="flex items-center gap-2 cursor-pointer mb-2">
@@ -35,7 +35,7 @@ export function WeeklyExtraSavingsGrid({ carPayoff, onUpdate }: WeeklyExtraSavin
               <span className="text-sm font-medium">Semana {week.week}</span>
               {week.saved && <CheckCircle2 className="w-3 h-3 text-positive" />}
             </label>
-            <div className="flex h-8 items-center rounded-md border border-border/30 bg-secondary/30 px-3 text-xs font-semibold">
+            <div className="flex h-7 items-center rounded-md border border-border bg-background px-2 text-xs font-semibold">
               {formatUSD(WEEKLY_EXTRA_TARGET)}
             </div>
             <p className="text-[10px] text-muted-foreground mt-1">

@@ -21,7 +21,7 @@ export function BankBalanceTracker({ bankBalances, onUpdate }: Props) {
   };
 
   return (
-    <div className="glass-card p-6">
+    <div className="planner-card p-4">
       <BankBalanceHeader totalDifference={totals.totalDifference} />
       <BankBalanceSummaryCards totals={totals} />
       <BankBalanceTable bankBalances={bankBalances} totals={totals} onFieldChange={handleFieldChange} />

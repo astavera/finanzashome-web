@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { formatUSD } from '@/lib/currency';
 import { formatShortDate } from '@/lib/date-ranges';
@@ -26,53 +27,109 @@ export function WeekCardSummary({
   pendingCount,
   onExtraIncomeChange,
 }: WeekCardSummaryProps) {
+  const [extraValue, setExtraValue] = useState(String(extraIncome || ''));
+  const hasMounted = useRef(false);
+  const onExtraIncomeChangeRef = useRef(onExtraIncomeChange);
+  const debounceRef = useRef<number | null>(null);
+  const lastCommittedRef = useRef(extraIncome);
+
+  useEffect(() => {
+    onExtraIncomeChangeRef.current = onExtraIncomeChange;
+  }, [onExtraIncomeChange]);
+
+  useEffect(() => {
+    setExtraValue(String(extraIncome || ''));
+    lastCommittedRef.current = extraIncome;
+  }, [extraIncome]);
+
+  useEffect(() => {
+    if (!hasMounted.current) {
+      hasMounted.current = true;
+      return;
+    }
+
+    if (debounceRef.current) {
+      window.clearTimeout(debounceRef.current);
+    }
+
+    debounceRef.current = window.setTimeout(() => {
+      const nextValue = Number(extraValue) || 0;
+      if (nextValue !== lastCommittedRef.current) {
+        lastCommittedRef.current = nextValue;
+        onExtraIncomeChangeRef.current(nextValue);
+      }
+    }, 500);
+
+    return () => {
+      if (debounceRef.current) {
+        window.clearTimeout(debounceRef.current);
+      }
+    };
+  }, [extraValue]);
+
+  const displayRemaining = weeklyIncome + (Number(extraValue) || 0) - totalExpenses;
+
   return (
     <>
-      <div className="mb-3 flex items-center justify-between gap-3">
+      <div className="mb-2 flex items-center justify-between gap-3">
         <div className="min-w-0">
-          <h3 className="font-display text-base font-semibold tracking-tight">Week {week}</h3>
+          <h3 className="font-display text-sm font-semibold tracking-tight">Week {week}</h3>
           <p className="text-[11px] text-muted-foreground">Due {formatShortDate(dueDate)}</p>
         </div>
         <div className="flex shrink-0 items-center gap-1.5">
-          <span className="rounded-md border border-border bg-background/70 px-2 py-1 text-[10px] font-semibold">
+          <span className="rounded-md border border-border bg-background px-2 py-0.5 text-[10px] font-semibold">
             {pendingCount} pending
           </span>
-          <span className="rounded-md border border-border bg-background/70 px-2 py-1 text-[10px] text-muted-foreground">
+          <span className="rounded-md border border-border bg-background px-2 py-0.5 text-[10px] text-muted-foreground">
             {paidCount} paid
           </span>
         </div>
       </div>
 
-      <div className="mb-3 grid grid-cols-4 gap-1.5 text-xs">
-        <div className="rounded-md border border-border/50 bg-background/50 px-2.5 py-1.5">
+      <div className="mb-2 grid grid-cols-4 gap-1.5 text-xs">
+        <div className="planner-panel px-2 py-1.5">
           <p className="text-[10px] uppercase tracking-wide text-muted-foreground">Income</p>
           <p className="font-semibold">{formatUSD(weeklyIncome)}</p>
         </div>
-        <div className="rounded-md border border-border/50 bg-background/50 px-2.5 py-1.5">
+        <div className="planner-panel px-2 py-1.5">
           <p className="text-[10px] uppercase tracking-wide text-muted-foreground">Extra</p>
-          <Input
-            type="text"
-            inputMode="decimal"
-            value={extraIncome}
-            onChange={(event) => onExtraIncomeChange(Number(event.target.value) || 0)}
-            className="h-5 border-0 bg-transparent p-0 text-xs font-semibold shadow-none focus-visible:ring-0"
-            placeholder="0"
-          />
+          <div className="mt-0.5 flex h-5 min-w-0 items-center rounded-sm">
+            <span className="mr-1 shrink-0 text-xs font-semibold text-muted-foreground">$</span>
+            <input
+              type="text"
+              inputMode="decimal"
+              value={extraValue}
+              onChange={(event) => setExtraValue(event.target.value)}
+              onFocus={(event) => event.currentTarget.select()}
+              onBlur={() => {
+                const nextValue = Number(extraValue) || 0;
+                if (debounceRef.current) {
+                  window.clearTimeout(debounceRef.current);
+                }
+                if (nextValue !== lastCommittedRef.current) {
+                  lastCommittedRef.current = nextValue;
+                  onExtraIncomeChangeRef.current(nextValue);
+                }
+              }}
+              className="min-w-0 flex-1 appearance-none border-0 bg-transparent p-0 text-xs font-semibold leading-none text-foreground outline-none placeholder:text-muted-foreground"
+              placeholder="0"
+            />
+          </div>
         </div>
-        <div className="rounded-md border border-border/50 bg-background/50 px-2.5 py-1.5">
+        <div className="planner-panel px-2 py-1.5">
           <p className="text-[10px] uppercase tracking-wide text-muted-foreground">Expenses</p>
           <p className="font-semibold">{formatUSD(totalExpenses)}</p>
         </div>
-        <div className="rounded-md border border-border/50 bg-background/50 px-2.5 py-1.5">
+        <div className="planner-panel px-2 py-1.5">
           <p className="text-[10px] uppercase tracking-wide text-muted-foreground">Left</p>
           <p
             className={cn(
               'font-semibold',
-              remaining < 0 && 'text-destructive',
+              displayRemaining < 0 && 'text-destructive',
             )}
           >
-            {remaining >= 0 ? '' : '-'}
-            {formatUSD(Math.abs(remaining))}
+            {displayRemaining >= 0 ? '' : '-'}
+            {formatUSD(Math.abs(displayRemaining))}
           </p>
         </div>
       </div>

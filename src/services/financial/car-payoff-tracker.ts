@@ -138,7 +138,7 @@ async function ensureInitialMayPayments(
       const nextNotes = {
         ...currentNotes,
         saved: weekNumber === CAR_PAYOFF_INITIAL_PAID_WEEK ? true : currentNotes.saved,
-        monthlyPaymentPaid: weekNumber === 1 ? true : currentNotes.monthlyPaymentPaid,
+        monthlyPaymentPaid: weekNumber === 1 ? currentNotes.monthlyPaymentPaid ?? true : currentNotes.monthlyPaymentPaid,
         debtBaselineAmount: weekNumber === 1 ? CAR_PAYOFF_CURRENT_DEBT : currentNotes.debtBaselineAmount,
         lastMonthlyReset: weekNumber === 1 ? currentMonthKey : currentNotes.lastMonthlyReset,
       };

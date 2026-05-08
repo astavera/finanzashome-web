@@ -29,19 +29,19 @@ export function MonthlySummary({ totalRemaining, allocations, onUpdateAllocation
   const totalColombiaUSD = colombiaExpenses.reduce((s, e) => s + e.amount, 0);
 
   return (
-    <div className="glass-card p-6">
-      <h3 className="font-display font-semibold text-lg mb-4">Monthly Summary</h3>
+    <div className="planner-card p-4">
+      <h3 className="font-display font-semibold text-base mb-3">Monthly Summary</h3>
 
-      <div className="bg-primary/10 rounded-xl p-4 mb-4 text-center">
-        <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Total Remaining Money</p>
-        <p className={cn('text-3xl font-display font-bold', totalRemaining >= 0 ? 'text-positive' : 'text-negative')}>
+      <div className="planner-panel p-3 mb-3 text-center">
+        <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">Total Remaining Money</p>
+        <p className={cn('text-2xl font-display font-semibold', totalRemaining >= 0 ? 'text-positive' : 'text-negative')}>
           {formatUSD(totalRemaining)}
         </p>
       </div>
 
-      <div className="space-y-2 mb-4">
+      <div className="space-y-1.5 mb-3">
         {allocations.map((a, i) => (
-          <div key={i} className="flex items-center gap-3 bg-secondary/20 rounded-xl p-3 group">
+          <div key={i} className="planner-panel flex items-center gap-2 p-2 group">
             <Input
               value={a.label}
               onChange={(e) => onUpdateAllocation(i, { label: e.target.value })}
@@ -51,7 +51,7 @@ export function MonthlySummary({ totalRemaining, allocations, onUpdateAllocation
               type="number"
               value={a.amount}
               onChange={(e) => onUpdateAllocation(i, { amount: +e.target.value })}
-              className="w-28 h-7 text-right text-xs bg-secondary/30 border-border/30"
+              className="planner-input no-number-spinner w-28"
             />
             <button onClick={() => setDeleteIdx(i)} className="opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-destructive">
               <Trash2 className="w-3.5 h-3.5" />
@@ -61,8 +61,8 @@ export function MonthlySummary({ totalRemaining, allocations, onUpdateAllocation
       </div>
 
       {/* Add allocation */}
-      <div className="flex gap-2 mb-4">
-        <Input placeholder="New allocation..." value={newLabel} onChange={(e) => setNewLabel(e.target.value)} className="h-8 text-xs bg-secondary/30" />
+      <div className="flex gap-2 mb-3">
+        <Input placeholder="New allocation..." value={newLabel} onChange={(e) => setNewLabel(e.target.value)} className="h-8 text-xs bg-background" />
         <Button size="sm" variant="outline" className="h-8 text-xs gap-1" onClick={() => {
           if (newLabel) {
             onAddAllocation({ label: newLabel, amount: 0 });
@@ -73,28 +73,28 @@ export function MonthlySummary({ totalRemaining, allocations, onUpdateAllocation
       </div>
 
       {/* Unallocated warning */}
-      <div className={cn('rounded-xl p-3 text-center text-xs mb-4', unallocated < 0 ? 'bg-negative' : unallocated > 0 ? 'bg-warning/15' : 'bg-positive')}>
+      <div className={cn('rounded-md border p-2 text-center text-xs mb-3', unallocated < 0 ? 'border-destructive/30 bg-destructive/5' : 'border-border bg-muted/35')}>
         <span className="text-muted-foreground">Allocated: {formatUSD(totalAllocated)}</span>
         {unallocated !== 0 && (
-          <span className={cn('ml-2 font-semibold', unallocated < 0 ? 'text-negative' : 'text-warning')}>
+          <span className={cn('ml-2 font-semibold', unallocated < 0 ? 'text-negative' : 'text-foreground')}>
             ({unallocated > 0 ? `${formatUSD(unallocated)} unallocated` : `${formatUSD(Math.abs(unallocated))} over budget`})
           </span>
         )}
       </div>
 
       {/* Colombia Commitments */}
-      <div className="border-t border-border/50 pt-4">
-        <h4 className="text-sm font-semibold mb-3 text-accent">Colombia Monthly Commitments</h4>
-        <div className="grid grid-cols-3 gap-3">
-          <div className="bg-secondary/30 rounded-xl p-3 text-center">
+      <div className="border-t border-border pt-3">
+        <h4 className="text-sm font-semibold mb-2">Colombia Monthly Commitments</h4>
+        <div className="grid grid-cols-3 gap-2">
+          <div className="planner-panel p-2 text-center">
             <p className="text-[10px] text-muted-foreground uppercase">Sent (USD)</p>
             <p className="font-display font-bold">{formatUSD(totalColombiaUSD)}</p>
           </div>
-          <div className="bg-secondary/30 rounded-xl p-3 text-center">
+          <div className="planner-panel p-2 text-center">
             <p className="text-[10px] text-muted-foreground uppercase">Equiv (COP)</p>
             <p className="font-display font-bold">{formatCOP(totalColombiaUSD * exchangeRate.rate_cop_per_usd)}</p>
           </div>
-          <div className="bg-secondary/30 rounded-xl p-3 text-center">
+          <div className="planner-panel p-2 text-center">
             <p className="text-[10px] text-muted-foreground uppercase">Remitly Rate</p>
             <p className="font-display font-bold">{exchangeRate.rate_cop_per_usd.toLocaleString()}</p>
           </div>

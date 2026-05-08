@@ -10,7 +10,7 @@ type MonthlyPaymentToggleProps = {
 
 export function MonthlyPaymentToggle({ monthlyPaid, onToggle }: MonthlyPaymentToggleProps) {
   return (
-    <div className="mb-5 bg-secondary/20 rounded-xl p-4">
+    <div className="mb-3 planner-panel p-3">
       <div className="flex items-center justify-between">
         <div>
           <p className="text-sm font-medium">Pago Mensual del Carro</p>
@@ -20,8 +20,8 @@ export function MonthlyPaymentToggle({ monthlyPaid, onToggle }: MonthlyPaymentTo
           type="button"
           onClick={onToggle}
           className={cn(
-            'flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors',
-            monthlyPaid ? 'bg-positive/20 text-positive' : 'bg-secondary/30 text-muted-foreground hover:bg-secondary/50',
+            'flex items-center gap-2 rounded-md border px-3 py-1.5 text-sm font-medium transition-colors',
+            monthlyPaid ? 'border-foreground/25 bg-background text-positive' : 'border-border bg-background text-muted-foreground hover:text-foreground',
           )}
         >
           {monthlyPaid ? <CheckCircle2 className="w-4 h-4" /> : <Circle className="w-4 h-4" />}

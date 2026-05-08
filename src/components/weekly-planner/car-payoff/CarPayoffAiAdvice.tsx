@@ -22,9 +22,9 @@ export function CarPayoffAiAdvice({ aiAdvice, aiLoading, totalYearlySaved, onAsk
   };
 
   return (
-    <div className="rounded-xl border border-border/30 bg-secondary/10 p-4">
-      <div className="mb-3 flex items-center gap-2">
-        <Sparkles className="h-4 w-4 text-accent" />
+    <div className="planner-panel p-3">
+      <div className="mb-2 flex items-center gap-2">
+        <Sparkles className="h-4 w-4 text-muted-foreground" />
         <span className="text-sm font-medium">Preguntale a la IA</span>
       </div>
 
@@ -32,7 +32,7 @@ export function CarPayoffAiAdvice({ aiAdvice, aiLoading, totalYearlySaved, onAsk
         <Textarea
           value={question}
           onChange={(event) => setQuestion(event.target.value)}
-          className="min-h-20 bg-secondary/20"
+          className="min-h-16 bg-background"
           placeholder="Ej: Si pago $500 extra esta semana, cuanto interes ahorro?"
           disabled={aiLoading}
         />
@@ -54,7 +54,7 @@ export function CarPayoffAiAdvice({ aiAdvice, aiLoading, totalYearlySaved, onAsk
       )}
 
       {aiAdvice && (
-        <div className="prose prose-sm mt-3 max-w-none rounded-lg bg-secondary/20 p-3 text-sm dark:prose-invert">
+        <div className="prose prose-sm mt-3 max-w-none rounded-md border border-border bg-background p-3 text-sm dark:prose-invert">
           <ReactMarkdown>{aiAdvice}</ReactMarkdown>
         </div>
       )}

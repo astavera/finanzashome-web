@@ -33,26 +33,26 @@ export default function WeeklyPlanner() {
   }, 0);
 
   return (
-    <div className="max-w-7xl mx-auto space-y-8 animate-fade-in">
+    <div className="max-w-7xl mx-auto space-y-4 animate-fade-in">
       <div>
-        <h1 className="text-3xl font-display font-bold tracking-tight mb-1">Weekly Planner</h1>
+        <h1 className="text-2xl font-display font-semibold tracking-tight mb-1">Weekly Planner</h1>
         <p className="text-muted-foreground text-sm">Plan your household budget week by week</p>
       </div>
 
       {weeklyPlannerData.isLoading && (
-        <div className="glass-card p-8 text-center text-muted-foreground">
+        <div className="planner-card p-4 text-center text-sm text-muted-foreground">
           Loading weekly expenses...
         </div>
       )}
 
       {weeklyPlannerData.error && (
-        <div className="glass-card p-8 text-center text-destructive">
+        <div className="planner-card p-4 text-center text-sm text-destructive">
           {weeklyPlannerData.error instanceof Error ? weeklyPlannerData.error.message : 'Unable to load weekly expenses'}
         </div>
       )}
 
       {financialConfig.error && (
-        <div className="glass-card p-8 text-center text-destructive">
+        <div className="planner-card p-4 text-center text-sm text-destructive">
           {financialConfig.error instanceof Error ? financialConfig.error.message : 'Unable to load financial settings'}
         </div>
       )}

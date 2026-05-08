@@ -7,17 +7,17 @@ type BankBalanceHeaderProps = {
 
 export function BankBalanceHeader({ totalDifference }: BankBalanceHeaderProps) {
   return (
-    <div className="flex items-center justify-between mb-6">
+    <div className="flex items-center justify-between mb-3">
       <div className="flex items-center gap-3">
-        <div className="w-9 h-9 rounded-xl bg-primary/15 flex items-center justify-center">
-          <Wallet className="w-4.5 h-4.5 text-primary" />
+        <div className="w-8 h-8 rounded-md border border-border bg-muted/35 flex items-center justify-center">
+          <Wallet className="w-4 h-4 text-foreground" />
         </div>
         <div>
-          <h3 className="font-display font-semibold text-lg">Bank Balance Weekly Tracker</h3>
+          <h3 className="font-display font-semibold text-base">Bank Balance Weekly Tracker</h3>
           <p className="text-xs text-muted-foreground">Compara tu ingreso real vs presupuesto semanal</p>
         </div>
       </div>
-      <div className={`flex items-center gap-1.5 text-sm font-semibold px-3 py-1.5 rounded-full ${totalDifference >= 0 ? 'bg-positive text-positive' : 'bg-negative text-negative'}`}>
+      <div className={`flex items-center gap-1.5 rounded-md border px-2 py-1 text-xs font-semibold ${totalDifference >= 0 ? 'border-border bg-muted/35 text-positive' : 'border-destructive/30 bg-destructive/5 text-negative'}`}>
         {totalDifference >= 0 ? <TrendingUp className="w-3.5 h-3.5" /> : <TrendingDown className="w-3.5 h-3.5" />}
         {formatUSD(totalDifference)}
       </div>

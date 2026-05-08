@@ -43,6 +43,29 @@ export function useFinancialConfig() {
   const extraIncomeMutation = useMutation({
     mutationFn: ({ weekNumber, amount }: { weekNumber: number; amount: number }) =>
       updateExtraIncome(weekNumber, amount),
+    onMutate: async ({ weekNumber, amount }) => {
+      await queryClient.cancelQueries({ queryKey: ['financial-config'] });
+      const previousConfig = queryClient.getQueryData(['financial-config']);
+
+      queryClient.setQueryData(['financial-config'], (current: typeof settingsQuery.data) => {
+        if (!current) return current;
+
+        return {
+          ...current,
+          extraIncomes: {
+            ...current.extraIncomes,
+            [weekNumber]: amount,
+          },
+        };
+      });
+
+      return { previousConfig };
+    },
+    onError: (_error, _variables, context) => {
+      if (context?.previousConfig) {
+        queryClient.setQueryData(['financial-config'], context.previousConfig);
+      }
+    },
     onSuccess: invalidateConfig,
   });
 
