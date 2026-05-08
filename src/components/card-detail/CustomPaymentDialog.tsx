@@ -18,11 +18,11 @@ export function CustomPaymentDialog({ open, onOpenChange, onPayment, saving }: C
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="bg-card border-border max-w-sm">
         <DialogHeader>
-          <DialogTitle className="font-display">Custom Payment</DialogTitle>
+          <DialogTitle className="font-display">Pago personalizado</DialogTitle>
         </DialogHeader>
         <div className="space-y-4">
           <div>
-            <Label className="text-xs text-muted-foreground">Amount</Label>
+            <Label className="text-xs text-muted-foreground">Monto</Label>
             <Input
               type="number"
               value={customPayment}
@@ -33,7 +33,7 @@ export function CustomPaymentDialog({ open, onOpenChange, onPayment, saving }: C
           </div>
           <div className="flex gap-2">
             <Button variant="outline" className="flex-1" onClick={() => onOpenChange(false)}>
-              Cancel
+              Cancelar
             </Button>
             <Button
               className="flex-1"
@@ -46,7 +46,7 @@ export function CustomPaymentDialog({ open, onOpenChange, onPayment, saving }: C
                 }
               }}
             >
-              {saving ? 'Saving...' : 'Record Payment'}
+              {saving ? 'Guardando...' : 'Registrar pago'}
             </Button>
           </div>
         </div>

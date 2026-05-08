@@ -55,11 +55,11 @@ export default function TransactionsHistory() {
     mutationFn: deleteTransaction,
     onSuccess: async () => {
       await invalidateHistoryQueries();
-      toast.success('Transaction deleted');
+      toast.success('Transaccion eliminada');
       setDeleteTarget(null);
     },
     onError: (mutationError) => {
-      toast.error(mutationError instanceof Error ? mutationError.message : 'Unable to delete transaction');
+      toast.error(mutationError instanceof Error ? mutationError.message : 'No se pudo eliminar la transaccion');
     },
   });
 
@@ -67,11 +67,11 @@ export default function TransactionsHistory() {
     mutationFn: deleteWeeklyExpense,
     onSuccess: async () => {
       await invalidateHistoryQueries();
-      toast.success('Transaction deleted');
+      toast.success('Transaccion eliminada');
       setDeleteTarget(null);
     },
     onError: (mutationError) => {
-      toast.error(mutationError instanceof Error ? mutationError.message : 'Unable to delete expense');
+      toast.error(mutationError instanceof Error ? mutationError.message : 'No se pudo eliminar el gasto');
     },
   });
 
@@ -81,17 +81,17 @@ export default function TransactionsHistory() {
   return (
     <div className="max-w-6xl mx-auto space-y-6 animate-fade-in">
       <div>
-        <h1 className="text-3xl font-display font-bold tracking-tight mb-1">Transactions</h1>
+        <h1 className="text-3xl font-display font-bold tracking-tight mb-1">Transacciones</h1>
         <p className="text-muted-foreground text-sm">
-          Complete household transaction history ({filteredRecords.length} records)
+          Historial completo del hogar ({filteredRecords.length} registros)
         </p>
       </div>
 
-      {isLoading && <div className="glass-card p-8 text-center text-muted-foreground">Loading transactions...</div>}
+      {isLoading && <div className="glass-card p-8 text-center text-muted-foreground">Cargando transacciones...</div>}
 
       {error && (
         <div className="glass-card p-8 text-center text-destructive">
-          {error instanceof Error ? error.message : 'Unable to load transactions'}
+          {error instanceof Error ? error.message : 'No se pudieron cargar las transacciones'}
         </div>
       )}
 
@@ -112,8 +112,8 @@ export default function TransactionsHistory() {
       <DeleteConfirmation
         open={!!deleteTarget}
         onOpenChange={() => setDeleteTarget(null)}
-        title="Delete Transaction"
-        description="Remove this transaction permanently?"
+        title="Eliminar transaccion"
+        description="Eliminar esta transaccion permanentemente?"
         onConfirm={() => {
           if (!deleteTarget) return;
 

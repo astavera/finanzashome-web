@@ -26,7 +26,7 @@ const CardWalletPage = lazy(() => import("./pages/CardWallet"));
 function PageLoader() {
   return (
     <div className="min-h-[240px] flex items-center justify-center">
-      <p className="text-muted-foreground">Loading...</p>
+      <p className="text-muted-foreground">Cargando...</p>
     </div>
   );
 }
@@ -60,7 +60,7 @@ function AppRoutes() {
   if (loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <p className="text-muted-foreground">Loading...</p>
+        <p className="text-muted-foreground">Cargando...</p>
       </div>
     );
   }

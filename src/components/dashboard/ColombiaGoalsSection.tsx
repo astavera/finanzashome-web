@@ -27,7 +27,7 @@ export function ColombiaGoalsSection({
             <Globe className="h-5 w-5" />
           </div>
           <div>
-            <h3 className="font-display text-lg font-semibold">Colombia Financial Goals</h3>
+            <h3 className="font-display text-lg font-semibold">Metas financieras de Colombia</h3>
             <p className="text-sm text-muted-foreground">
               Ahorro en COP y su equivalencia estimada en USD.
             </p>
@@ -43,8 +43,8 @@ export function ColombiaGoalsSection({
       </div>
 
       <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <MetricCard title="Total Goal (COP)" value={formatCOP(totalCopTarget)} className="bg-background/60" />
-        <MetricCard title="Total Saved (COP)" value={formatCOP(totalCopSaved)} className="bg-background/60" />
+        <MetricCard title="Meta total (COP)" value={formatCOP(totalCopTarget)} className="bg-background/60" />
+        <MetricCard title="Ahorrado total (COP)" value={formatCOP(totalCopSaved)} className="bg-background/60" />
         <MetricCard title="Ahorrado (equiv. USD)" value={formatUSD(totalCopSavedUsd)} className="bg-background/60" />
         <MetricCard
           title="Tasa de cambio"

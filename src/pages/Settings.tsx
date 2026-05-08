@@ -31,8 +31,8 @@ export default function SettingsPage() {
   return (
     <div className="max-w-3xl mx-auto space-y-8 animate-fade-in">
       <div>
-        <h1 className="text-3xl font-display font-bold tracking-tight mb-1">Settings</h1>
-        <p className="text-muted-foreground text-sm">Manage your household, preferences, and app configuration</p>
+        <h1 className="text-3xl font-display font-bold tracking-tight mb-1">Ajustes</h1>
+        <p className="text-muted-foreground text-sm">Administra tu hogar, preferencias y configuracion de la app</p>
         <div className="mt-4 inline-flex items-center gap-3 rounded-2xl border border-border/60 bg-background/80 px-4 py-3 shadow-sm">
           <div className="relative h-10 w-10 overflow-hidden rounded-2xl border border-white/40 bg-slate-200">
             <img src={brandPhoto} alt="Finanzas Hogar" className="h-full w-full object-cover" />

@@ -13,7 +13,7 @@ export function BankBalanceHeader({ totalDifference }: BankBalanceHeaderProps) {
           <Wallet className="w-4 h-4 text-foreground" />
         </div>
         <div>
-          <h3 className="font-display font-semibold text-base">Bank Balance Weekly Tracker</h3>
+          <h3 className="font-display font-semibold text-base">Seguimiento semanal del banco</h3>
           <p className="text-xs text-muted-foreground">Compara tu ingreso real vs presupuesto semanal</p>
         </div>
       </div>

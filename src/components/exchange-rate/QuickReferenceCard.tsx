@@ -7,7 +7,7 @@ type QuickReferenceCardProps = {
 export function QuickReferenceCard({ rate }: QuickReferenceCardProps) {
   return (
     <div className="glass-card p-6">
-      <h3 className="font-display font-semibold mb-3 text-sm">Quick Reference</h3>
+      <h3 className="font-display font-semibold mb-3 text-sm">Referencia rapida</h3>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
         {[50, 100, 200, 500].map((usd) => (
           <div key={usd} className="bg-secondary/30 rounded-xl p-3 text-center">

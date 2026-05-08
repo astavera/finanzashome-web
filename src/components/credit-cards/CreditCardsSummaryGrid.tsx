@@ -14,27 +14,27 @@ export function CreditCardsSummaryGrid({ creditCards }: CreditCardsSummaryGridPr
   return (
     <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
       <CreditCardSummaryCard
-        label="Active Cards"
+        label="Tarjetas activas"
         value={String(creditCards.length)}
-        helper="Tracked in this household"
+        helper="Registradas en este hogar"
         icon={<CreditCardIcon className="h-4 w-4" />}
       />
       <CreditCardSummaryCard
-        label="Total Balance"
+        label="Balance total"
         value={formatUSD(totals.totalBalance)}
-        helper="Outstanding across all cards"
+        helper="Deuda entre todas las tarjetas"
         icon={<Wallet className="h-4 w-4" />}
       />
       <CreditCardSummaryCard
-        label="Available Credit"
+        label="Credito disponible"
         value={formatUSD(totals.totalAvailable)}
-        helper="Remaining before limits"
+        helper="Disponible antes de llegar al limite"
         icon={<PiggyBank className="h-4 w-4" />}
       />
       <CreditCardSummaryCard
-        label="Utilization"
+        label="Uso"
         value={`${totals.overallUtilization.toFixed(1)}%`}
-        helper="Portfolio-wide usage"
+        helper="Uso total del portafolio"
         icon={<ShieldCheck className="h-4 w-4" />}
         tone={totals.overallUtilization < 30 ? 'positive' : totals.overallUtilization < 50 ? 'warning' : 'negative'}
       />

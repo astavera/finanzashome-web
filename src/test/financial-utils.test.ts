@@ -32,12 +32,12 @@ describe('credit card utilities', () => {
     });
   });
 
-  it('formats ordinal day labels', () => {
-    expect(getOrdinal(1)).toBe('1st');
-    expect(getOrdinal(2)).toBe('2nd');
-    expect(getOrdinal(3)).toBe('3rd');
-    expect(getOrdinal(11)).toBe('11th');
-    expect(getOrdinal(22)).toBe('22nd');
+  it('formats day labels in Spanish', () => {
+    expect(getOrdinal(1)).toBe('Dia 1');
+    expect(getOrdinal(2)).toBe('Dia 2');
+    expect(getOrdinal(3)).toBe('Dia 3');
+    expect(getOrdinal(11)).toBe('Dia 11');
+    expect(getOrdinal(22)).toBe('Dia 22');
   });
 });
 

@@ -27,10 +27,10 @@ export function ExchangeRateSettings({
     onUpdateExchangeRate({ rate_cop_per_usd: rateValue, notes: rateNotes, source: 'manual' })
       .then(() => {
         setEditingRate(false);
-        toast.success('Exchange rate updated');
+        toast.success('Tasa de cambio actualizada');
       })
       .catch((error) => {
-        toast.error(error instanceof Error ? error.message : 'Unable to update exchange rate');
+        toast.error(error instanceof Error ? error.message : 'No se pudo actualizar la tasa de cambio');
       });
   };
 
@@ -39,11 +39,11 @@ export function ExchangeRateSettings({
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <Globe className="w-4 h-4" style={{ color: 'hsl(var(--accent))' }} />
-          <h3 className="font-display font-semibold">Default Exchange Rate</h3>
+          <h3 className="font-display font-semibold">Tasa de cambio predeterminada</h3>
         </div>
         {!editingRate && (
           <Button size="sm" variant="outline" className="gap-1.5 text-xs" onClick={() => setEditingRate(true)}>
-            <Pencil className="w-3 h-3" /> Edit
+            <Pencil className="w-3 h-3" /> Editar
           </Button>
         )}
       </div>
@@ -55,15 +55,15 @@ export function ExchangeRateSettings({
             <span className="text-sm text-muted-foreground">COP</span>
           </div>
           <div className="flex items-center gap-3">
-            <Label className="text-sm text-muted-foreground w-20">Notes</Label>
-            <Input value={rateNotes} onChange={(event) => setRateNotes(event.target.value)} className="flex-1 bg-secondary/30" placeholder="e.g. Remitly standard rate" maxLength={100} />
+            <Label className="text-sm text-muted-foreground w-20">Notas</Label>
+            <Input value={rateNotes} onChange={(event) => setRateNotes(event.target.value)} className="flex-1 bg-secondary/30" placeholder="Ej. tasa estandar de Remitly" maxLength={100} />
           </div>
           <div className="flex gap-2 pt-1">
             <Button size="sm" className="gap-1.5" onClick={saveRate}>
-              <Check className="w-3 h-3" /> Save
+              <Check className="w-3 h-3" /> Guardar
             </Button>
             <Button size="sm" variant="ghost" onClick={() => setEditingRate(false)}>
-              Cancel
+              Cancelar
             </Button>
           </div>
         </div>
@@ -74,13 +74,13 @@ export function ExchangeRateSettings({
             <span className="font-display font-bold text-lg">{exchangeRate.rate_cop_per_usd.toLocaleString()}</span>
             <span className="text-sm text-muted-foreground">COP</span>
             <span className="ml-auto text-xs px-2 py-0.5 rounded-full bg-secondary" style={{ color: 'hsl(var(--info))' }}>
-              {exchangeRate.source === 'live' ? 'Live' : 'Manual'}
+              {exchangeRate.source === 'live' ? 'En vivo' : 'Manual'}
             </span>
           </div>
           {exchangeRate.notes && <p className="text-xs text-muted-foreground pl-1">{exchangeRate.notes}</p>}
           <p className="text-xs text-muted-foreground pl-1">
             <Calendar className="w-3 h-3 inline mr-1" />
-            Last updated: {exchangeRate.last_updated}
+            Ultima actualizacion: {exchangeRate.last_updated}
           </p>
         </div>
       )}

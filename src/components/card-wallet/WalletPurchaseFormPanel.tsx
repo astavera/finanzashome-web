@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { EXPENSE_CATEGORIES, PAID_BY_OPTIONS } from '@/lib/types';
+import { categoryLabel } from '@/lib/labels';
 import type { CreditCard } from '@/lib/types';
 import type { WalletPurchaseForm } from './WalletPurchasePanel';
 
@@ -67,7 +68,7 @@ export function WalletPurchaseFormPanel({
             >
               {EXPENSE_CATEGORIES.map((category) => (
                 <option key={category} value={category} className="bg-white text-slate-950 dark:bg-slate-900 dark:text-white">
-                  {category}
+                  {categoryLabel(category)}
                 </option>
               ))}
             </select>
@@ -118,7 +119,7 @@ export function WalletPurchaseFormPanel({
         <div>
           <div className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-white dark:bg-white dark:text-slate-950">
             <Sparkles className="h-3.5 w-3.5" />
-            Quick Charge
+            Compra rapida
           </div>
           <h2 className="mt-3 font-display text-2xl font-semibold text-slate-950 dark:text-white">Nueva compra</h2>
           <p className="mt-1 max-w-lg text-sm leading-6 text-slate-600 dark:text-slate-300">
@@ -183,7 +184,7 @@ export function WalletPurchaseFormPanel({
           >
             {EXPENSE_CATEGORIES.map((category) => (
               <option key={category} value={category} className="bg-white text-slate-950 dark:bg-slate-900 dark:text-white">
-                {category}
+                {categoryLabel(category)}
               </option>
             ))}
           </select>

@@ -8,7 +8,7 @@ interface DeleteConfirmationProps {
   onConfirm: () => void;
 }
 
-export function DeleteConfirmation({ open, onOpenChange, title = 'Delete Item', description = 'Are you sure? This action cannot be undone.', onConfirm }: DeleteConfirmationProps) {
+export function DeleteConfirmation({ open, onOpenChange, title = 'Eliminar elemento', description = 'Estas seguro? Esta accion no se puede deshacer.', onConfirm }: DeleteConfirmationProps) {
   return (
     <AlertDialog open={open} onOpenChange={onOpenChange}>
       <AlertDialogContent className="bg-card border-border">
@@ -17,9 +17,9 @@ export function DeleteConfirmation({ open, onOpenChange, title = 'Delete Item', 
           <AlertDialogDescription>{description}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel className="bg-secondary/50">Cancel</AlertDialogCancel>
+          <AlertDialogCancel className="bg-secondary/50">Cancelar</AlertDialogCancel>
           <AlertDialogAction onClick={onConfirm} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
-            Delete
+            Eliminar
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

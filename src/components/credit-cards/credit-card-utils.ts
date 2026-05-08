@@ -20,7 +20,5 @@ export function getCreditCardTotals(creditCards: CreditCard[]) {
 }
 
 export function getOrdinal(day: number) {
-  if (day % 100 >= 11 && day % 100 <= 13) return `${day}th`;
-  const suffix = day % 10 === 1 ? 'st' : day % 10 === 2 ? 'nd' : day % 10 === 3 ? 'rd' : 'th';
-  return `${day}${suffix}`;
+  return `Dia ${day}`;
 }

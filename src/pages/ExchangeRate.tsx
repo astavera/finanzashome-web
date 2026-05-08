@@ -33,31 +33,31 @@ export default function ExchangeRatePage() {
     await financialConfig.updateExchangeRate({
       rate_cop_per_usd: Number(editRate),
       source: 'manual',
-      notes: editNotes || 'Manual update',
+      notes: editNotes || 'Actualizacion manual',
     });
-    toast.success('Exchange rate updated');
+    toast.success('Tasa de cambio actualizada');
   };
 
   const fetchLiveRate = async () => {
     setFetching(true);
     try {
       const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
-      if (!response.ok) throw new Error('Could not fetch rate');
+      if (!response.ok) throw new Error('No se pudo obtener la tasa');
 
       const data = await response.json();
       const copRate = data.rates?.COP;
-      if (!copRate) throw new Error('Could not fetch rate');
+      if (!copRate) throw new Error('No se pudo obtener la tasa');
 
       const roundedRate = Math.round(copRate);
       setEditRate(String(roundedRate));
       await financialConfig.updateExchangeRate({
         rate_cop_per_usd: roundedRate,
         source: 'live',
-        notes: 'Live rate from exchangerate-api.com (approximate Remitly rate)',
+        notes: 'Tasa en vivo desde exchangerate-api.com (aproximacion a Remitly)',
       });
-      toast.success(`Live rate fetched: 1 USD = ${roundedRate.toLocaleString()} COP`);
+      toast.success(`Tasa en vivo obtenida: 1 USD = ${roundedRate.toLocaleString()} COP`);
     } catch {
-      toast.error('Could not fetch live rate. Please update manually.');
+      toast.error('No se pudo obtener la tasa en vivo. Actualizala manualmente.');
     } finally {
       setFetching(false);
     }
@@ -66,8 +66,8 @@ export default function ExchangeRatePage() {
   return (
     <div className="max-w-3xl mx-auto space-y-8 animate-fade-in">
       <div>
-        <h1 className="text-3xl font-display font-bold tracking-tight mb-1">Exchange Rate</h1>
-        <p className="text-muted-foreground text-sm">Remitly COP/USD rate for Colombia goals</p>
+        <h1 className="text-3xl font-display font-bold tracking-tight mb-1">Tasa de cambio</h1>
+        <p className="text-muted-foreground text-sm">Tasa COP/USD de Remitly para metas de Colombia</p>
       </div>
 
       <CurrentExchangeRateCard exchangeRate={exchangeRate} />

@@ -10,7 +10,7 @@ export function BankBalanceSummaryCards({ totals }: BankBalanceSummaryCardsProps
   const items = [
     { label: 'Ingreso Real', value: totals.totalRealIncome, icon: DollarSign, color: 'text-muted-foreground' },
     { label: 'Presupuesto', value: totals.totalBudget, icon: BarChart3, color: 'text-muted-foreground' },
-    { label: 'Expenses', value: totals.totalExpenses, icon: Receipt, color: 'text-muted-foreground' },
+    { label: 'Gastos', value: totals.totalExpenses, icon: Receipt, color: 'text-muted-foreground' },
     {
       label: 'Diferencia',
       value: totals.totalDifference,

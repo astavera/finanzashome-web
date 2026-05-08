@@ -28,7 +28,7 @@ export function DashboardHero({
             <span className="h-2 w-2 rounded-full bg-primary" />
             Panel financiero del hogar
           </div>
-          <h1 className="text-3xl font-display font-bold tracking-tight md:text-4xl">Dashboard</h1>
+          <h1 className="text-3xl font-display font-bold tracking-tight md:text-4xl">Panel principal</h1>
           <p className="mt-2 max-w-lg text-sm leading-6 text-muted-foreground md:text-base">
             Flujo semanal, deuda de tarjetas y avance de metas en una sola vista.
           </p>

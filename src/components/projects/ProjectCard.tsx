@@ -49,15 +49,15 @@ export function ProjectCard({ project, exchangeRate, yearlyCollection, year, onE
 
       <div className="space-y-2 text-sm">
         <div className="flex justify-between">
-          <span className="text-muted-foreground">Target</span>
+          <span className="text-muted-foreground">Meta</span>
           <span className="font-semibold">{fmt(project.target_amount)}</span>
         </div>
         <div className="flex justify-between">
-          <span className="text-muted-foreground">Saved</span>
+          <span className="text-muted-foreground">Ahorrado</span>
           <span className="font-semibold text-positive">{fmt(project.current_amount)}</span>
         </div>
         <div className="flex justify-between">
-          <span className="text-muted-foreground">Remaining</span>
+          <span className="text-muted-foreground">Restante</span>
           <span className="font-semibold text-negative">{fmt(remaining)}</span>
         </div>
         <div className="rounded-lg border border-border/40 bg-secondary/20 p-3">
@@ -65,10 +65,10 @@ export function ProjectCard({ project, exchangeRate, yearlyCollection, year, onE
             <div className="min-w-0">
               <div className="flex items-center gap-1.5 text-[10px] uppercase text-muted-foreground">
                 <CalendarCheck className="h-3 w-3" />
-                <span>{year} collected</span>
+                <span>{year} cobrado</span>
               </div>
               <p className="mt-1 text-xs text-muted-foreground">
-                {paidCount} fixed {paidCount === 1 ? 'payment' : 'payments'}
+                {paidCount} {paidCount === 1 ? 'pago fijo' : 'pagos fijos'}
               </p>
             </div>
             <span className="shrink-0 text-sm font-semibold text-positive">{fmt(collectedThisYear)}</span>
@@ -77,15 +77,15 @@ export function ProjectCard({ project, exchangeRate, yearlyCollection, year, onE
         {isCOP && (
           <>
             <div className="flex justify-between border-t border-border/30 pt-2">
-              <span className="text-muted-foreground">USD Saved</span>
+              <span className="text-muted-foreground">Ahorrado en USD</span>
               <span className="font-semibold">{formatUSD(copToUsd(project.current_amount, exchangeRate))}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-muted-foreground">USD Target</span>
+              <span className="text-muted-foreground">Meta en USD</span>
               <span className="font-semibold">{formatUSD(copToUsd(project.target_amount, exchangeRate))}</span>
             </div>
             <div className="flex justify-between text-[10px]">
-              <span className="text-muted-foreground">Rate</span>
+              <span className="text-muted-foreground">Tasa</span>
               <span>{exchangeRate.toLocaleString()} COP/USD</span>
             </div>
           </>

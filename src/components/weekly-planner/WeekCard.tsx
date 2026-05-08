@@ -40,7 +40,7 @@ export function WeekCard({
   const handleSave = (data: Omit<WeeklyExpense, 'id'>) => {
     if (editingExpense) {
       onUpdateExpense(editingExpense.id, data);
-      toast.success('Expense updated');
+      toast.success('Gasto actualizado');
     }
     setEditingExpense(null);
   };
@@ -86,12 +86,12 @@ export function WeekCard({
       <DeleteConfirmation
         open={!!deleteId}
         onOpenChange={() => setDeleteId(null)}
-        title="Delete Expense"
-        description="This will permanently remove this expense from the weekly planner."
+        title="Eliminar gasto"
+        description="Esto eliminara permanentemente este gasto del planificador semanal."
         onConfirm={() => {
           if (deleteId) {
             onDeleteExpense(deleteId);
-            toast.success('Expense deleted');
+            toast.success('Gasto eliminado');
             setDeleteId(null);
           }
         }}

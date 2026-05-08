@@ -1,5 +1,6 @@
 import { ChevronRight } from 'lucide-react';
 import { formatUSD } from '@/lib/currency';
+import { categoryLabel } from '@/lib/labels';
 import type { CreditCard, Transaction } from '@/lib/types';
 
 type RecentCardActivityProps = {
@@ -29,7 +30,7 @@ export function RecentCardActivity({ selectedCard, recentTransactions, compact =
                   <div className="min-w-0">
                     <p className="truncate text-sm font-medium text-slate-950 dark:text-white">{transaction.merchant}</p>
                     <p className="mt-0.5 text-[11px] text-slate-500 dark:text-slate-400">
-                      {transaction.date} - {transaction.category} - {transaction.paid_by}
+                      {transaction.date} - {categoryLabel(transaction.category)} - {transaction.paid_by}
                     </p>
                   </div>
                   <p className="shrink-0 text-xs font-semibold text-slate-950 dark:text-white">{formatUSD(transaction.amount)}</p>
@@ -63,7 +64,7 @@ export function RecentCardActivity({ selectedCard, recentTransactions, compact =
                   <div className="min-w-0">
                     <p className="truncate text-sm font-medium text-white">{transaction.merchant}</p>
                     <p className="mt-1 text-xs text-white/55">
-                      {transaction.date} - {transaction.category} - {transaction.paid_by}
+                      {transaction.date} - {categoryLabel(transaction.category)} - {transaction.paid_by}
                     </p>
                   </div>
                   <div className="flex items-center gap-2 rounded-full bg-white/8 px-2.5 py-1 text-xs font-semibold text-white/90">

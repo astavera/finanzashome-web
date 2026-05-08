@@ -13,7 +13,7 @@ export function SpendingCategoryChart({
     <section className="dashboard-surface p-6">
       <div className="mb-5 flex items-start justify-between gap-4">
         <div>
-          <h3 className="font-display text-lg font-semibold">Spending by Category</h3>
+          <h3 className="font-display text-lg font-semibold">Gastos por categoria</h3>
           <p className="mt-1 text-sm text-muted-foreground">
             Distribucion del gasto registrado este periodo.
           </p>

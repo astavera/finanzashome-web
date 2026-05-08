@@ -51,11 +51,11 @@ export default function CardDetail({ card, onBack }: CardDetailProps) {
       updateCreditCard(card.id, { current_balance: Math.max(0, card.current_balance - amount) }),
     onSuccess: async (_updatedCard, amount) => {
       await invalidateFinanceQueries();
-      toast.success(`Payment of ${formatUSD(amount)} recorded`);
+      toast.success(`Pago de ${formatUSD(amount)} registrado`);
       setShowPayment(false);
     },
     onError: (error) => {
-      toast.error(error instanceof Error ? error.message : 'Unable to record payment');
+      toast.error(error instanceof Error ? error.message : 'No se pudo registrar el pago');
     },
   });
 
@@ -77,11 +77,11 @@ export default function CardDetail({ card, onBack }: CardDetailProps) {
     },
     onSuccess: async () => {
       await invalidateFinanceQueries();
-      toast.success('Purchase recorded');
+      toast.success('Compra registrada');
       setShowAddPurchase(false);
     },
     onError: (error) => {
-      toast.error(error instanceof Error ? error.message : 'Unable to record purchase');
+      toast.error(error instanceof Error ? error.message : 'No se pudo registrar la compra');
     },
   });
 
@@ -89,18 +89,18 @@ export default function CardDetail({ card, onBack }: CardDetailProps) {
     mutationFn: deleteTransaction,
     onSuccess: async () => {
       await invalidateFinanceQueries();
-      toast.success('Transaction deleted');
+      toast.success('Transaccion eliminada');
       setDeleteId(null);
     },
     onError: (error) => {
-      toast.error(error instanceof Error ? error.message : 'Unable to delete transaction');
+      toast.error(error instanceof Error ? error.message : 'No se pudo eliminar la transaccion');
     },
   });
 
   return (
     <div className="max-w-4xl mx-auto space-y-6 animate-fade-in">
       <button onClick={onBack} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
-        <ArrowLeft className="w-4 h-4" /> Back to Cards
+        <ArrowLeft className="w-4 h-4" /> Volver a tarjetas
       </button>
 
       <CardDetailVisual card={card} utilization={metrics.utilization} utilizationColor={metrics.utilizationColor} />
@@ -164,8 +164,8 @@ export default function CardDetail({ card, onBack }: CardDetailProps) {
       <DeleteConfirmation
         open={!!deleteId}
         onOpenChange={() => setDeleteId(null)}
-        title="Delete Transaction"
-        description="Remove this transaction?"
+        title="Eliminar transaccion"
+        description="Eliminar esta transaccion?"
         onConfirm={() => {
           if (deleteId) deleteTransactionMutation.mutate(deleteId);
         }}

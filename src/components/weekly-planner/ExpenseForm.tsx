@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { EXPENSE_CATEGORIES, PAID_BY_OPTIONS, STATUS_OPTIONS } from '@/lib/types';
 import type { WeeklyExpense } from '@/lib/types';
+import { categoryLabel, statusLabel } from '@/lib/labels';
 
 type ExpenseStatus = WeeklyExpense['status'];
 
@@ -63,50 +64,50 @@ export function ExpenseForm({ open, onOpenChange, onSave, initialData, weekNumbe
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="bg-card border-border max-w-md">
         <DialogHeader>
-          <DialogTitle className="font-display">{initialData ? 'Edit Expense' : 'Add Expense'} — Week {weekNumber}</DialogTitle>
+          <DialogTitle className="font-display">{initialData ? 'Editar gasto' : 'Agregar gasto'} - Semana {weekNumber}</DialogTitle>
         </DialogHeader>
         <div className="space-y-4">
           <div>
-            <Label className="text-xs text-muted-foreground">Concept</Label>
-            <Input value={form.concept} onChange={(e) => setForm({ ...form, concept: e.target.value })} className="mt-1 bg-background" placeholder="e.g. Renta, Mercado" />
+            <Label className="text-xs text-muted-foreground">Concepto</Label>
+            <Input value={form.concept} onChange={(e) => setForm({ ...form, concept: e.target.value })} className="mt-1 bg-background" placeholder="Ej. renta, mercado" />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <Label className="text-xs text-muted-foreground">Amount (USD)</Label>
+              <Label className="text-xs text-muted-foreground">Monto (USD)</Label>
               <Input type="number" value={form.amount} onChange={(e) => setForm({ ...form, amount: e.target.value })} className="no-number-spinner mt-1 bg-background" placeholder="0.00" />
             </div>
             <div>
-              <Label className="text-xs text-muted-foreground">Date</Label>
+              <Label className="text-xs text-muted-foreground">Fecha</Label>
               <Input type="date" value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} className="mt-1 bg-background" />
             </div>
           </div>
           <div className="grid grid-cols-3 gap-3">
             <div>
-              <Label className="text-xs text-muted-foreground">Who Pays</Label>
+              <Label className="text-xs text-muted-foreground">Quien paga</Label>
               <select value={form.paid_by} onChange={(e) => setForm({ ...form, paid_by: e.target.value })} className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm">
                 {PAID_BY_OPTIONS.map((p) => <option key={p} value={p}>{p}</option>)}
               </select>
             </div>
             <div>
-              <Label className="text-xs text-muted-foreground">Status</Label>
+              <Label className="text-xs text-muted-foreground">Estado</Label>
               <select value={form.status} onChange={(e) => setForm({ ...form, status: e.target.value as ExpenseStatus })} className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm">
-                {STATUS_OPTIONS.map((s) => <option key={s} value={s}>{s}</option>)}
+                {STATUS_OPTIONS.map((s) => <option key={s} value={s}>{statusLabel(s)}</option>)}
               </select>
             </div>
             <div>
-              <Label className="text-xs text-muted-foreground">Category</Label>
+              <Label className="text-xs text-muted-foreground">Categoria</Label>
               <select value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2 text-sm">
-                {EXPENSE_CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
+                {EXPENSE_CATEGORIES.map((c) => <option key={c} value={c}>{categoryLabel(c)}</option>)}
               </select>
             </div>
           </div>
           <div>
-            <Label className="text-xs text-muted-foreground">Notes (optional)</Label>
-            <Input value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} className="mt-1 bg-background" placeholder="Add a note..." />
+            <Label className="text-xs text-muted-foreground">Notas (opcional)</Label>
+            <Input value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} className="mt-1 bg-background" placeholder="Agrega una nota..." />
           </div>
           <div className="flex gap-2 pt-2">
-            <Button variant="outline" className="flex-1" onClick={() => onOpenChange(false)}>Cancel</Button>
-            <Button className="flex-1" onClick={handleSave}>{initialData ? 'Save Changes' : 'Add Expense'}</Button>
+            <Button variant="outline" className="flex-1" onClick={() => onOpenChange(false)}>Cancelar</Button>
+            <Button className="flex-1" onClick={handleSave}>{initialData ? 'Guardar cambios' : 'Agregar gasto'}</Button>
           </div>
         </div>
       </DialogContent>

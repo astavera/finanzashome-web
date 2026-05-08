@@ -25,10 +25,10 @@ export function IncomeBudgetSettings({
     onUpdateWeeklyIncome(incomeValue)
       .then(() => {
         setEditingIncome(false);
-        toast.success('Weekly income updated');
+        toast.success('Ingreso semanal actualizado');
       })
       .catch((error) => {
-        toast.error(error instanceof Error ? error.message : 'Unable to update weekly income');
+        toast.error(error instanceof Error ? error.message : 'No se pudo actualizar el ingreso semanal');
       });
   };
 
@@ -36,11 +36,11 @@ export function IncomeBudgetSettings({
     <div className="glass-card p-6">
       <div className="flex items-center gap-2 mb-4">
         <Wallet className="w-4 h-4 text-primary" />
-        <h3 className="font-display font-semibold">Income & Budget</h3>
+        <h3 className="font-display font-semibold">Ingresos y presupuesto</h3>
       </div>
       <div className="space-y-3">
         <div className="flex items-center justify-between bg-secondary/30 rounded-xl p-4">
-          <span className="text-sm">Weekly Income</span>
+          <span className="text-sm">Ingreso semanal</span>
           {editingIncome ? (
             <div className="flex items-center gap-2">
               <span className="text-xs text-muted-foreground">$</span>
@@ -62,11 +62,11 @@ export function IncomeBudgetSettings({
           )}
         </div>
         <div className="flex items-center justify-between bg-secondary/30 rounded-xl p-4">
-          <span className="text-sm">Monthly Estimate (4 weeks)</span>
+          <span className="text-sm">Estimado mensual (4 semanas)</span>
           <span className="font-semibold">{formatUSD(monthlyEstimate)}</span>
         </div>
         <div className="flex items-center justify-between bg-secondary/30 rounded-xl p-4">
-          <span className="text-sm">Biweekly Paycheck</span>
+          <span className="text-sm">Pago quincenal</span>
           <span className="font-semibold text-muted-foreground">{formatUSD(weeklyIncome * 2)}</span>
         </div>
       </div>

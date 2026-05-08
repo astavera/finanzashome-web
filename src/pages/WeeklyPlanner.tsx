@@ -35,45 +35,45 @@ export default function WeeklyPlanner() {
   return (
     <div className="max-w-7xl mx-auto space-y-4 animate-fade-in">
       <div>
-        <h1 className="text-2xl font-display font-semibold tracking-tight mb-1">Weekly Planner</h1>
-        <p className="text-muted-foreground text-sm">Plan your household budget week by week</p>
+        <h1 className="text-2xl font-display font-semibold tracking-tight mb-1">Planificador semanal</h1>
+        <p className="text-muted-foreground text-sm">Organiza el presupuesto del hogar semana por semana</p>
       </div>
 
       {weeklyPlannerData.isLoading && (
         <div className="planner-card p-4 text-center text-sm text-muted-foreground">
-          Loading weekly expenses...
+          Cargando gastos semanales...
         </div>
       )}
 
       {weeklyPlannerData.error && (
         <div className="planner-card p-4 text-center text-sm text-destructive">
-          {weeklyPlannerData.error instanceof Error ? weeklyPlannerData.error.message : 'Unable to load weekly expenses'}
+          {weeklyPlannerData.error instanceof Error ? weeklyPlannerData.error.message : 'No se pudieron cargar los gastos semanales'}
         </div>
       )}
 
       {financialConfig.error && (
         <div className="planner-card p-4 text-center text-sm text-destructive">
-          {financialConfig.error instanceof Error ? financialConfig.error.message : 'Unable to load financial settings'}
+          {financialConfig.error instanceof Error ? financialConfig.error.message : 'No se pudo cargar la configuracion financiera'}
         </div>
       )}
 
       <BankBalanceTracker bankBalances={bankBalances} onUpdate={(week, updates) => {
         financialConfig.updateBankBalance(week, updates).catch((error) => {
-          toast.error(error instanceof Error ? error.message : 'Unable to update bank balance');
+          toast.error(error instanceof Error ? error.message : 'No se pudo actualizar el balance bancario');
         });
       }} />
       <CarPayoffPlan
         carPayoff={carPayoff}
         onUpdate={(week, updates) => {
           financialConfig.updateCarPayoff(week, updates).catch((error) => {
-            toast.error(error instanceof Error ? error.message : 'Unable to update car payoff');
+            toast.error(error instanceof Error ? error.message : 'No se pudo actualizar el pago del carro');
           });
         }}
         accumulatedSavings={accumulatedCarSavings}
         appliedPaymentsToDate={appliedCarPaymentsToDate}
         onAccumulatedChange={(value) => {
           financialConfig.updateAccumulatedSavings(value).catch((error) => {
-            toast.error(error instanceof Error ? error.message : 'Unable to update accumulated savings');
+            toast.error(error instanceof Error ? error.message : 'No se pudo actualizar el ahorro acumulado');
           });
         }}
       />
@@ -82,17 +82,17 @@ export default function WeeklyPlanner() {
         allocations={monthlyAllocations}
         onUpdateAllocation={(index, updates) => {
           financialConfig.updateAllocation(index, updates).catch((error) => {
-            toast.error(error instanceof Error ? error.message : 'Unable to update allocation');
+            toast.error(error instanceof Error ? error.message : 'No se pudo actualizar la asignacion');
           });
         }}
         onAddAllocation={(allocation) => {
           financialConfig.addAllocation(allocation).catch((error) => {
-            toast.error(error instanceof Error ? error.message : 'Unable to add allocation');
+            toast.error(error instanceof Error ? error.message : 'No se pudo agregar la asignacion');
           });
         }}
         onDeleteAllocation={(index) => {
           financialConfig.deleteAllocation(index).catch((error) => {
-            toast.error(error instanceof Error ? error.message : 'Unable to delete allocation');
+            toast.error(error instanceof Error ? error.message : 'No se pudo eliminar la asignacion');
           });
         }}
         exchangeRate={exchangeRate}

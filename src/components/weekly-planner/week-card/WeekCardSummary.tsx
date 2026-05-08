@@ -73,22 +73,22 @@ export function WeekCardSummary({
     <>
       <div className="mb-2 flex items-center justify-between gap-3">
         <div className="min-w-0">
-          <h3 className="font-display text-sm font-semibold tracking-tight">Week {week}</h3>
-          <p className="text-[11px] text-muted-foreground">Due {formatShortDate(dueDate)}</p>
+          <h3 className="font-display text-sm font-semibold tracking-tight">Semana {week}</h3>
+          <p className="text-[11px] text-muted-foreground">Vence {formatShortDate(dueDate)}</p>
         </div>
         <div className="flex shrink-0 items-center gap-1.5">
           <span className="rounded-md border border-border bg-background px-2 py-0.5 text-[10px] font-semibold">
-            {pendingCount} pending
+            {pendingCount} pendientes
           </span>
           <span className="rounded-md border border-border bg-background px-2 py-0.5 text-[10px] text-muted-foreground">
-            {paidCount} paid
+            {paidCount} pagados
           </span>
         </div>
       </div>
 
       <div className="mb-2 grid grid-cols-4 gap-1.5 text-xs">
         <div className="planner-panel px-2 py-1.5">
-          <p className="text-[10px] uppercase tracking-wide text-muted-foreground">Income</p>
+          <p className="text-[10px] uppercase tracking-wide text-muted-foreground">Ingreso</p>
           <p className="font-semibold">{formatUSD(weeklyIncome)}</p>
         </div>
         <div className="planner-panel px-2 py-1.5">
@@ -117,11 +117,11 @@ export function WeekCardSummary({
           </div>
         </div>
         <div className="planner-panel px-2 py-1.5">
-          <p className="text-[10px] uppercase tracking-wide text-muted-foreground">Expenses</p>
+          <p className="text-[10px] uppercase tracking-wide text-muted-foreground">Gastos</p>
           <p className="font-semibold">{formatUSD(totalExpenses)}</p>
         </div>
         <div className="planner-panel px-2 py-1.5">
-          <p className="text-[10px] uppercase tracking-wide text-muted-foreground">Left</p>
+          <p className="text-[10px] uppercase tracking-wide text-muted-foreground">Restante</p>
           <p
             className={cn(
               'font-semibold',

@@ -15,7 +15,7 @@ export function WeeklyCashFlowChart({
     <section className="dashboard-surface p-6">
       <div className="mb-5 flex items-start justify-between gap-4">
         <div>
-          <h3 className="font-display text-lg font-semibold">Weekly Cash Flow</h3>
+          <h3 className="font-display text-lg font-semibold">Flujo semanal</h3>
           <p className="mt-1 text-sm text-muted-foreground">
             Compara gasto frente al saldo que queda por semana.
           </p>
@@ -41,8 +41,8 @@ export function WeeklyCashFlowChart({
               labelStyle={{ color: 'hsl(var(--popover-foreground))' }}
               itemStyle={{ color: 'hsl(var(--popover-foreground))' }}
             />
-            <Bar dataKey="expenses" fill="hsl(0,72%,51%)" radius={[6, 6, 0, 0]} name="Expenses" />
-            <Bar dataKey="remaining" fill="hsl(160,84%,39%)" radius={[6, 6, 0, 0]} name="Remaining" />
+            <Bar dataKey="expenses" fill="hsl(0,72%,51%)" radius={[6, 6, 0, 0]} name="Gastos" />
+            <Bar dataKey="remaining" fill="hsl(160,84%,39%)" radius={[6, 6, 0, 0]} name="Restante" />
           </BarChart>
         </ResponsiveContainer>
       </div>

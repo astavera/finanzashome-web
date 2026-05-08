@@ -13,30 +13,30 @@ export function ConversionCalculator({ usdInput, copInput, rate, onUsdChange, on
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div className="glass-card p-6">
-        <h3 className="font-display font-semibold mb-4 text-sm">USD to COP</h3>
+        <h3 className="font-display font-semibold mb-4 text-sm">USD a COP</h3>
         <Input
           type="number"
           value={usdInput}
           onChange={(event) => onUsdChange(event.target.value)}
           className="bg-secondary/30 mb-3"
-          placeholder="USD amount"
+          placeholder="Monto en USD"
         />
         <div className="bg-secondary/30 rounded-xl p-4 text-center">
-          <p className="text-xs text-muted-foreground mb-1">Result</p>
+          <p className="text-xs text-muted-foreground mb-1">Resultado</p>
           <p className="text-2xl font-display font-bold">{formatCOP(usdToCop(Number(usdInput) || 0, rate))}</p>
         </div>
       </div>
       <div className="glass-card p-6">
-        <h3 className="font-display font-semibold mb-4 text-sm">COP to USD</h3>
+        <h3 className="font-display font-semibold mb-4 text-sm">COP a USD</h3>
         <Input
           type="number"
           value={copInput}
           onChange={(event) => onCopChange(event.target.value)}
           className="bg-secondary/30 mb-3"
-          placeholder="COP amount"
+          placeholder="Monto en COP"
         />
         <div className="bg-secondary/30 rounded-xl p-4 text-center">
-          <p className="text-xs text-muted-foreground mb-1">Result</p>
+          <p className="text-xs text-muted-foreground mb-1">Resultado</p>
           <p className="text-2xl font-display font-bold">{formatUSD(copToUsd(Number(copInput) || 0, rate))}</p>
         </div>
       </div>

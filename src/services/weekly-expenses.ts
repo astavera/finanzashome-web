@@ -62,6 +62,14 @@ function getExpenseTemplateKey(row: WeeklyExpenseWithBudget | FixedWeeklyExpense
   ].join('|');
 }
 
+function getFixedInstanceTemplateIdentity(row: WeeklyExpenseWithBudget) {
+  if (row.source_type === 'fixed_instance' && row.source_id) {
+    return row.source_id;
+  }
+
+  return getExpenseTemplateKey(row);
+}
+
 function mapFixedWeeklyExpense(row: WeeklyExpenseWithBudget): FixedWeeklyExpense {
   return {
     id: row.id,
@@ -175,8 +183,11 @@ async function ensureFixedExpensesForMonth(householdId: string, monthDate = new 
   }
 
   const currentRows = data as WeeklyExpenseWithBudget[];
-  const currentKeys = new Set(currentRows.map(getExpenseTemplateKey));
-  const missingTemplates = templates.filter((template) => !currentKeys.has(getExpenseTemplateKey(template)));
+  const currentTemplateIds = new Set(currentRows.map(getFixedInstanceTemplateIdentity));
+  const missingTemplates = templates.filter((template) => (
+    !currentTemplateIds.has(template.id) &&
+    !currentTemplateIds.has(getExpenseTemplateKey(template))
+  ));
 
   if (missingTemplates.length === 0) {
     return;

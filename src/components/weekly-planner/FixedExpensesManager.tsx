@@ -3,6 +3,7 @@ import { Plus, Repeat2, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { formatUSD } from '@/lib/currency';
+import { categoryLabel } from '@/lib/labels';
 import { EXPENSE_CATEGORIES, PAID_BY_OPTIONS, type FixedWeeklyExpense } from '@/lib/types';
 
 type FixedExpensesManagerProps = {
@@ -62,7 +63,7 @@ export function FixedExpensesManager({
         <div className="flex items-center gap-2">
           <Repeat2 className="h-4 w-4 text-foreground" />
           <div>
-            <h2 className="font-display text-base font-semibold">Fijos Week {selectedWeek}</h2>
+            <h2 className="font-display text-base font-semibold">Fijos semana {selectedWeek}</h2>
             <p className="text-xs text-muted-foreground">
               Semana: {formatUSD(selectedWeekTotal)} · Mes: {formatUSD(totalFixed)}
             </p>
@@ -73,14 +74,14 @@ export function FixedExpensesManager({
             value={draft.concept}
             onChange={(event) => setDraft({ ...draft, concept: event.target.value })}
             className="no-number-spinner h-8 bg-background text-xs"
-            placeholder="Concept"
+            placeholder="Concepto"
           />
           <Input
             type="number"
             value={draft.amount}
             onChange={(event) => setDraft({ ...draft, amount: event.target.value })}
             className="no-number-spinner h-8 bg-background text-xs"
-            placeholder="Amount"
+            placeholder="Monto"
           />
           <select
             value={draft.paid_by}
@@ -97,19 +98,19 @@ export function FixedExpensesManager({
             className="h-8 rounded-md border border-border bg-background px-2 text-xs"
           >
             {EXPENSE_CATEGORIES.map((category) => (
-              <option key={category} value={category}>{category}</option>
+              <option key={category} value={category}>{categoryLabel(category)}</option>
             ))}
           </select>
           <Button type="button" size="sm" className="h-8 gap-1" onClick={addExpense}>
             <Plus className="h-3.5 w-3.5" />
-            Add
+            Agregar
           </Button>
         </div>
       </div>
 
       <div className="mt-3 planner-panel p-2.5">
         <div className="mb-2 flex items-center justify-between">
-          <h3 className="text-sm font-semibold">Week {selectedWeek}</h3>
+          <h3 className="text-sm font-semibold">Semana {selectedWeek}</h3>
           <span className="text-xs text-muted-foreground">{formatUSD(selectedWeekTotal)}</span>
         </div>
         <div className="space-y-2">
@@ -136,7 +137,7 @@ export function FixedExpensesManager({
             </div>
           ))}
           {selectedWeekExpenses.length === 0 && (
-            <p className="py-2 text-xs text-muted-foreground">No fixed expenses</p>
+            <p className="py-2 text-xs text-muted-foreground">No hay gastos fijos</p>
           )}
         </div>
       </div>

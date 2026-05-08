@@ -28,7 +28,7 @@ export function AuthVisualPanel({ authPhoto }: AuthVisualPanelProps) {
           </p>
           <div className="mt-5 grid grid-cols-2 gap-3 text-xs text-white/85">
             <div className="rounded-2xl border border-white/10 bg-white/10 p-3 backdrop-blur">
-              <p className="uppercase tracking-[0.16em] text-white/60">Dashboard</p>
+              <p className="uppercase tracking-[0.16em] text-white/60">Panel</p>
               <p className="mt-1 font-semibold">Resumen rapido</p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-white/10 p-3 backdrop-blur">

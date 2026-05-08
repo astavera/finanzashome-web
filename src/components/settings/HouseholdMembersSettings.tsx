@@ -22,7 +22,7 @@ export function HouseholdMembersSettings({
   const [editUserRole, setEditUserRole] = useState('');
   const [showAddUser, setShowAddUser] = useState(false);
   const [newUserName, setNewUserName] = useState('');
-  const [newUserRole, setNewUserRole] = useState('Member');
+  const [newUserRole, setNewUserRole] = useState('Miembro');
   const [deleteUserId, setDeleteUserId] = useState<string | null>(null);
 
   const startEditUser = (user: User) => {
@@ -35,23 +35,23 @@ export function HouseholdMembersSettings({
     if (!editingUser || !editUserName.trim()) return;
     updateUser(editingUser, { name: editUserName.trim(), role: editUserRole.trim() });
     setEditingUser(null);
-    toast.success('Member updated');
+    toast.success('Miembro actualizado');
   };
 
   const handleAddUser = () => {
     if (!newUserName.trim()) return;
-    addUser({ id: `u-${Date.now()}`, name: newUserName.trim(), role: newUserRole.trim() || 'Member' });
+    addUser({ id: `u-${Date.now()}`, name: newUserName.trim(), role: newUserRole.trim() || 'Miembro' });
     setNewUserName('');
-    setNewUserRole('Member');
+    setNewUserRole('Miembro');
     setShowAddUser(false);
-    toast.success('Member added');
+    toast.success('Miembro agregado');
   };
 
   const confirmDeleteUser = () => {
     if (!deleteUserId) return;
     deleteUser(deleteUserId);
     setDeleteUserId(null);
-    toast.success('Member removed');
+    toast.success('Miembro eliminado');
   };
 
   return (
@@ -59,10 +59,10 @@ export function HouseholdMembersSettings({
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <Users className="w-4 h-4 text-primary" />
-          <h3 className="font-display font-semibold">Household Members</h3>
+          <h3 className="font-display font-semibold">Miembros del hogar</h3>
         </div>
         <Button size="sm" variant="outline" className="gap-1.5 text-xs" onClick={() => setShowAddUser(true)}>
-          <Plus className="w-3 h-3" /> Add
+          <Plus className="w-3 h-3" /> Agregar
         </Button>
       </div>
       <div className="space-y-3">
@@ -73,8 +73,8 @@ export function HouseholdMembersSettings({
             </div>
             {editingUser === user.id ? (
               <div className="flex-1 flex items-center gap-2 flex-wrap">
-                <Input value={editUserName} onChange={(event) => setEditUserName(event.target.value)} className="h-8 w-36 bg-secondary/50 text-sm" placeholder="Name" maxLength={30} />
-                <Input value={editUserRole} onChange={(event) => setEditUserRole(event.target.value)} className="h-8 w-28 bg-secondary/50 text-sm" placeholder="Role" maxLength={20} />
+                <Input value={editUserName} onChange={(event) => setEditUserName(event.target.value)} className="h-8 w-36 bg-secondary/50 text-sm" placeholder="Nombre" maxLength={30} />
+                <Input value={editUserRole} onChange={(event) => setEditUserRole(event.target.value)} className="h-8 w-28 bg-secondary/50 text-sm" placeholder="Rol" maxLength={20} />
                 <Button size="icon" variant="ghost" className="h-7 w-7" onClick={saveUser}>
                   <Check className="w-3.5 h-3.5 text-primary" />
                 </Button>
@@ -108,8 +108,8 @@ export function HouseholdMembersSettings({
             <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
               <Plus className="w-4 h-4" />
             </div>
-            <Input value={newUserName} onChange={(event) => setNewUserName(event.target.value)} className="h-8 w-36 bg-secondary/50 text-sm" placeholder="Name" maxLength={30} autoFocus />
-            <Input value={newUserRole} onChange={(event) => setNewUserRole(event.target.value)} className="h-8 w-28 bg-secondary/50 text-sm" placeholder="Role" maxLength={20} />
+            <Input value={newUserName} onChange={(event) => setNewUserName(event.target.value)} className="h-8 w-36 bg-secondary/50 text-sm" placeholder="Nombre" maxLength={30} autoFocus />
+            <Input value={newUserRole} onChange={(event) => setNewUserRole(event.target.value)} className="h-8 w-28 bg-secondary/50 text-sm" placeholder="Rol" maxLength={20} />
             <Button size="icon" variant="ghost" className="h-7 w-7" onClick={handleAddUser}>
               <Check className="w-3.5 h-3.5 text-primary" />
             </Button>
@@ -123,8 +123,8 @@ export function HouseholdMembersSettings({
       <DeleteConfirmation
         open={!!deleteUserId}
         onOpenChange={(open) => !open && setDeleteUserId(null)}
-        title="Remove Member"
-        description="This member will be removed from the household. Their existing expense records will remain."
+        title="Eliminar miembro"
+        description="Este miembro se eliminara del hogar. Sus gastos existentes se mantendran."
         onConfirm={confirmDeleteUser}
       />
     </div>

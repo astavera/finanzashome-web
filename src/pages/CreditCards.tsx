@@ -40,12 +40,12 @@ export default function CreditCards() {
     mutationFn: createCreditCard,
     onSuccess: async () => {
       await invalidateFinanceQueries();
-      toast.success('Card added');
+      toast.success('Tarjeta agregada');
       setEditCard(null);
       setShowAdd(false);
     },
     onError: (mutationError) => {
-      toast.error(getErrorMessage(mutationError, 'Unable to create card'));
+      toast.error(getErrorMessage(mutationError, 'No se pudo crear la tarjeta'));
     },
   });
 
@@ -53,12 +53,12 @@ export default function CreditCards() {
     mutationFn: ({ id, updates }: { id: string; updates: Partial<CreditCard> }) => updateCreditCard(id, updates),
     onSuccess: async () => {
       await invalidateFinanceQueries();
-      toast.success('Card updated');
+      toast.success('Tarjeta actualizada');
       setEditCard(null);
       setShowAdd(false);
     },
     onError: (mutationError) => {
-      toast.error(getErrorMessage(mutationError, 'Unable to update card'));
+      toast.error(getErrorMessage(mutationError, 'No se pudo actualizar la tarjeta'));
     },
   });
 
@@ -66,14 +66,14 @@ export default function CreditCards() {
     mutationFn: deleteCreditCard,
     onSuccess: async () => {
       await invalidateFinanceQueries();
-      toast.success('Card deleted');
+      toast.success('Tarjeta eliminada');
       setDeleteId(null);
       if (selectedCard === deleteId) {
         setSelectedCard(null);
       }
     },
     onError: (mutationError) => {
-      toast.error(getErrorMessage(mutationError, 'Unable to delete card'));
+      toast.error(getErrorMessage(mutationError, 'No se pudo eliminar la tarjeta'));
     },
   });
 
@@ -106,21 +106,21 @@ export default function CreditCards() {
 
       {isLoading && (
         <div className="glass-card p-12 text-center text-muted-foreground">
-          <p className="mb-2 text-lg">Loading cards...</p>
+          <p className="mb-2 text-lg">Cargando tarjetas...</p>
         </div>
       )}
 
       {error && (
         <div className="glass-card p-12 text-center text-destructive">
-          <p className="mb-2 text-lg">Unable to load cards</p>
-          <p className="text-sm">{error instanceof Error ? error.message : 'Unknown error'}</p>
+          <p className="mb-2 text-lg">No se pudieron cargar las tarjetas</p>
+          <p className="text-sm">{error instanceof Error ? error.message : 'Error desconocido'}</p>
         </div>
       )}
 
       {!isLoading && !error && creditCards.length === 0 ? (
         <div className="dashboard-surface p-12 text-center text-muted-foreground">
-          <p className="mb-2 text-lg font-display font-semibold text-foreground">No cards yet</p>
-          <p className="text-sm">Add your first credit card to start tracking balances and spending.</p>
+          <p className="mb-2 text-lg font-display font-semibold text-foreground">Aun no hay tarjetas</p>
+          <p className="text-sm">Agrega tu primera tarjeta para controlar balances y gastos.</p>
         </div>
       ) : !isLoading && !error ? (
         <CreditCardPortfolioList
@@ -151,8 +151,8 @@ export default function CreditCards() {
       <DeleteConfirmation
         open={!!deleteId}
         onOpenChange={() => setDeleteId(null)}
-        title="Delete Credit Card"
-        description="This will remove the card and all associated transactions."
+        title="Eliminar tarjeta"
+        description="Esto eliminara la tarjeta y todas sus transacciones asociadas."
         onConfirm={() => {
           if (deleteId) deleteCardMutation.mutate(deleteId);
         }}

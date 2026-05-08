@@ -12,6 +12,7 @@ import {
 import { getCurrentWeekNumber } from '@/components/card-wallet/card-wallet-utils';
 import { useCreditCardsQuery, useTransactionsQuery } from '@/hooks/use-financial-data';
 import { formatUSD } from '@/lib/currency';
+import { categoryLabel } from '@/lib/labels';
 import type { Transaction } from '@/lib/types';
 import { createTransaction } from '@/services/transactions';
 import { updateCreditCard } from '@/services/credit-cards';
@@ -127,11 +128,11 @@ export default function CardWalletPage() {
               className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               <ArrowLeft className="h-4 w-4" />
-              Volver al dashboard
+              Volver al panel
             </button>
             <div className="inline-flex items-center gap-2 rounded-full border border-slate-300/80 bg-white/75 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-500 backdrop-blur dark:border-white/10 dark:bg-white/10 dark:text-slate-200">
               <WalletCards className="h-3.5 w-3.5 text-slate-700 dark:text-slate-200" />
-              Wallet Flow
+              Flujo de billetera
             </div>
           </div>
           <div className="max-w-2xl">
@@ -272,7 +273,7 @@ function WeeklySpendingPanel({
                 <div className="min-w-0">
                   <p className="truncate text-sm font-medium text-slate-950 dark:text-white">{transaction.merchant}</p>
                   <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
-                    {transaction.date} - {transaction.category}
+                    {transaction.date} - {categoryLabel(transaction.category)}
                   </p>
                 </div>
                 <p className="shrink-0 text-sm font-semibold text-slate-950 dark:text-white">
@@ -322,7 +323,7 @@ function MonthlySummaryPanel({
         ) : (
           summary.categories.map((category) => (
             <div key={category.label} className="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-white/10 dark:bg-white/5">
-              <span className="text-sm font-medium text-slate-700 dark:text-slate-200">{category.label}</span>
+              <span className="text-sm font-medium text-slate-700 dark:text-slate-200">{categoryLabel(category.label)}</span>
               <span className="text-sm font-semibold text-slate-950 dark:text-white">{formatUSD(category.amount)}</span>
             </div>
           ))

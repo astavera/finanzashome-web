@@ -1,5 +1,6 @@
 import { CheckCircle2, Clock, CircleDot } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { statusLabel } from '@/lib/labels';
 
 const statusConfig = {
   Paid: { icon: CheckCircle2, color: 'text-success', bg: 'bg-success/15' },
@@ -18,7 +19,7 @@ export function StatusBadge({ status, onClick, size = 'sm' }: { status: 'Paid' |
       className={cn('inline-flex items-center rounded-full font-medium transition-all', config.bg, config.color, sizeClass, onClick && 'hover:scale-105 cursor-pointer')}
     >
       <Icon className={size === 'md' ? 'w-3.5 h-3.5' : 'w-3 h-3'} />
-      {status}
+      {statusLabel(status)}
     </button>
   );
 }

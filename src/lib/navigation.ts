@@ -11,15 +11,15 @@ import {
 } from 'lucide-react';
 
 export const appNavItems = [
-  { title: 'Dashboard', shortTitle: 'Home', url: '/', icon: LayoutDashboard, group: 'main' },
-  { title: 'Weekly Planner', shortTitle: 'Planner', url: '/planner', icon: CalendarDays, group: 'main' },
+  { title: 'Panel principal', shortTitle: 'Inicio', url: '/', icon: LayoutDashboard, group: 'main' },
+  { title: 'Planificador semanal', shortTitle: 'Plan', url: '/planner', icon: CalendarDays, group: 'main' },
   { title: 'Gastos fijos', shortTitle: 'Fijos', url: '/fixed-expenses', icon: ReceiptText, group: 'main' },
-  { title: 'Credit Cards', shortTitle: 'Cards', url: '/cards', icon: CreditCard, group: 'main' },
-  { title: 'Wallet', shortTitle: 'Wallet', url: '/wallet', icon: WalletCards, group: 'main' },
-  { title: 'Transactions', shortTitle: 'History', url: '/transactions', icon: ArrowLeftRight, group: 'money' },
-  { title: 'Projects', shortTitle: 'Goals', url: '/projects', icon: FolderKanban, group: 'money' },
-  { title: 'Exchange Rate', shortTitle: 'Rate', url: '/exchange', icon: RefreshCw, group: 'money' },
-  { title: 'Settings', shortTitle: 'Settings', url: '/settings', icon: Settings, group: 'system' },
+  { title: 'Tarjetas de credito', shortTitle: 'Tarjetas', url: '/cards', icon: CreditCard, group: 'main' },
+  { title: 'Billetera', shortTitle: 'Billetera', url: '/wallet', icon: WalletCards, group: 'main' },
+  { title: 'Transacciones', shortTitle: 'Historial', url: '/transactions', icon: ArrowLeftRight, group: 'money' },
+  { title: 'Proyectos', shortTitle: 'Metas', url: '/projects', icon: FolderKanban, group: 'money' },
+  { title: 'Tasa de cambio', shortTitle: 'Tasa', url: '/exchange', icon: RefreshCw, group: 'money' },
+  { title: 'Ajustes', shortTitle: 'Ajustes', url: '/settings', icon: Settings, group: 'system' },
 ] as const;
 
 export const topNavItems = appNavItems.filter((item) =>

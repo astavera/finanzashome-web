@@ -53,12 +53,12 @@ export function buildCardMetricItems({
 }) {
   return [
     { label: 'Balance', value: formatUSD(balance) },
-    { label: 'Available', value: formatUSD(available), color: 'text-positive' },
-    { label: 'Utilization', value: `${utilization.toFixed(1)}%`, color: utilizationColor },
-    { label: 'Days to Close', value: String(daysUntilClosing) },
-    { label: 'Days to Due', value: String(daysUntilDue) },
-    { label: 'Cycle Spending', value: formatUSD(cycleSpending) },
-    { label: 'Min Payment', value: formatUSD(minimumPayment) },
-    { label: 'Limit', value: formatUSD(creditLimit) },
+    { label: 'Disponible', value: formatUSD(available), color: 'text-positive' },
+    { label: 'Uso', value: `${utilization.toFixed(1)}%`, color: utilizationColor },
+    { label: 'Dias al cierre', value: String(daysUntilClosing) },
+    { label: 'Dias al pago', value: String(daysUntilDue) },
+    { label: 'Gasto del ciclo', value: formatUSD(cycleSpending) },
+    { label: 'Pago minimo', value: formatUSD(minimumPayment) },
+    { label: 'Limite', value: formatUSD(creditLimit) },
   ];
 }

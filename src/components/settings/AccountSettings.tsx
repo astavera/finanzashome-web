@@ -7,8 +7,8 @@ export function AccountSettings() {
     <div className="glass-card p-6">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="font-display font-semibold">Account</h3>
-          <p className="text-xs text-muted-foreground mt-1">Sign out from your current session</p>
+          <h3 className="font-display font-semibold">Cuenta</h3>
+          <p className="text-xs text-muted-foreground mt-1">Cierra la sesion actual</p>
         </div>
         <Button
           variant="outline"
@@ -19,10 +19,10 @@ export function AccountSettings() {
               toast.error(error.message);
               return;
             }
-            toast.success('Logged out');
+            toast.success('Sesion cerrada');
           }}
         >
-          Log out
+          Cerrar sesion
         </Button>
       </div>
     </div>

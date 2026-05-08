@@ -87,7 +87,7 @@ export default function FixedExpenses() {
               onClick={() => setSelectedMonth((month) => shiftMonth(month, -1))}
             >
               <ChevronLeft className="h-3.5 w-3.5" />
-              Prev
+              Anterior
             </button>
             <button
               type="button"
@@ -95,14 +95,14 @@ export default function FixedExpenses() {
               onClick={() => setSelectedMonth(new Date())}
             >
               <RotateCcw className="h-3.5 w-3.5" />
-              Today
+              Hoy
             </button>
             <button
               type="button"
               className="inline-flex h-7 items-center gap-1 rounded-md border border-border bg-background px-2 text-xs font-medium text-muted-foreground hover:text-foreground"
               onClick={() => setSelectedMonth((month) => shiftMonth(month, 1))}
             >
-              Next
+              Siguiente
               <ChevronRight className="h-3.5 w-3.5" />
             </button>
           </div>
@@ -113,11 +113,11 @@ export default function FixedExpenses() {
             <p className="font-semibold">{formatUSD(monthTotal)}</p>
           </div>
           <div className="planner-panel px-2.5 py-1.5">
-            <p className="text-[10px] uppercase tracking-wide text-muted-foreground">Pending</p>
+            <p className="text-[10px] uppercase tracking-wide text-muted-foreground">Pendiente</p>
             <p className="font-semibold">{formatUSD(pendingTotal)}</p>
           </div>
           <div className="planner-panel px-2.5 py-1.5">
-            <p className="text-[10px] uppercase tracking-wide text-muted-foreground">Paid</p>
+            <p className="text-[10px] uppercase tracking-wide text-muted-foreground">Pagado</p>
             <p className="font-semibold">{formatUSD(paidTotal)}</p>
           </div>
         </div>
@@ -125,13 +125,13 @@ export default function FixedExpenses() {
 
       {weeklyPlannerData.error && (
         <div className="planner-card p-4 text-center text-sm text-destructive">
-          {weeklyPlannerData.error instanceof Error ? weeklyPlannerData.error.message : 'Unable to load fixed expenses'}
+          {weeklyPlannerData.error instanceof Error ? weeklyPlannerData.error.message : 'No se pudieron cargar los gastos fijos'}
         </div>
       )}
 
       {financialConfig.error && (
         <div className="planner-card p-4 text-center text-sm text-destructive">
-          {financialConfig.error instanceof Error ? financialConfig.error.message : 'Unable to load financial settings'}
+          {financialConfig.error instanceof Error ? financialConfig.error.message : 'No se pudo cargar la configuracion financiera'}
         </div>
       )}
 
@@ -155,7 +155,7 @@ export default function FixedExpenses() {
               >
                 <div className="flex items-center gap-2">
                   <Folder className="h-4 w-4" />
-                  <span className="text-sm font-semibold">Week {summary.week}</span>
+                  <span className="text-sm font-semibold">Semana {summary.week}</span>
                   {summary.pending > 0 && (
                     <span className="ml-auto rounded border border-border bg-card px-1.5 py-0.5 text-[10px]">
                       {summary.pending}
@@ -182,22 +182,22 @@ export default function FixedExpenses() {
             dueDate={getFridayForWeekOfMonth(selectedWeek, selectedMonth)}
             onExtraIncomeChange={(value) => {
               financialConfig.updateExtraIncome(selectedWeek, value).catch((error) => {
-                toast.error(error instanceof Error ? error.message : 'Unable to update extra income');
+                toast.error(error instanceof Error ? error.message : 'No se pudo actualizar el ingreso extra');
               });
             }}
             onStatusChange={(id, status) => {
               weeklyPlannerData.updateExpense(id, { status }).catch((error) => {
-                toast.error(error instanceof Error ? error.message : 'Unable to update expense');
+                toast.error(error instanceof Error ? error.message : 'No se pudo actualizar el gasto');
               });
             }}
             onUpdateExpense={(id, updates) => {
               weeklyPlannerData.updateExpense(id, updates).catch((error) => {
-                toast.error(error instanceof Error ? error.message : 'Unable to update expense');
+                toast.error(error instanceof Error ? error.message : 'No se pudo actualizar el gasto');
               });
             }}
             onDeleteExpense={(id) => {
               weeklyPlannerData.deleteExpense(id).catch((error) => {
-                toast.error(error instanceof Error ? error.message : 'Unable to delete expense');
+                toast.error(error instanceof Error ? error.message : 'No se pudo eliminar el gasto');
               });
             }}
           />
@@ -205,7 +205,7 @@ export default function FixedExpenses() {
           <div className="mt-3 grid grid-cols-3 gap-2">
             <div className="planner-panel p-2">
               <p className="text-[10px] uppercase tracking-wide text-muted-foreground">Semana</p>
-              <p className="text-sm font-semibold">Week {selectedWeek}</p>
+              <p className="text-sm font-semibold">Semana {selectedWeek}</p>
             </div>
             <div className="planner-panel p-2">
               <p className="text-[10px] uppercase tracking-wide text-muted-foreground">Fijos</p>
@@ -224,17 +224,17 @@ export default function FixedExpenses() {
             selectedWeek={selectedWeek}
             onAdd={(expense) => {
               weeklyPlannerData.addFixedExpense(expense).catch((error) => {
-                toast.error(error instanceof Error ? error.message : 'Unable to add fixed expense');
+                toast.error(error instanceof Error ? error.message : 'No se pudo agregar el gasto fijo');
               });
             }}
             onUpdate={(id, updates) => {
               weeklyPlannerData.updateFixedExpense(id, updates).catch((error) => {
-                toast.error(error instanceof Error ? error.message : 'Unable to update fixed expense');
+                toast.error(error instanceof Error ? error.message : 'No se pudo actualizar el gasto fijo');
               });
             }}
             onDelete={(id) => {
               weeklyPlannerData.deleteFixedExpense(id).catch((error) => {
-                toast.error(error instanceof Error ? error.message : 'Unable to delete expense');
+                toast.error(error instanceof Error ? error.message : 'No se pudo eliminar el gasto');
               });
             }}
           />

@@ -16,7 +16,7 @@ export function BankBalanceTable({ bankBalances, totals, onFieldChange }: BankBa
       <table className="w-full text-xs">
         <thead>
           <tr className="planner-table-head">
-            {['Semana', 'Ingreso Real', 'Presupuesto', 'Expenses', 'Diferencia'].map((header) => (
+            {['Semana', 'Ingreso real', 'Presupuesto', 'Gastos', 'Diferencia'].map((header) => (
               <th key={header} className="text-right py-2 px-3 text-muted-foreground font-medium text-[10px] uppercase tracking-wider first:text-left first:pl-3">
                 {header}
               </th>

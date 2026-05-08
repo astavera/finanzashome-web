@@ -17,7 +17,7 @@ export function CreditCardPortfolioItem({ card, onSelect, onEdit, onDelete }: Cr
   const img = getCardImage(card);
   const utilization = getUtilization(card);
   const utilizationColor = utilization < 30 ? 'text-success' : utilization < 50 ? 'text-warning' : 'text-danger';
-  const utilizationLabel = utilization < 30 ? 'Healthy' : utilization < 50 ? 'Watch' : 'High';
+  const utilizationLabel = utilization < 30 ? 'Saludable' : utilization < 50 ? 'Vigilar' : 'Alto';
   const available = Math.max(0, card.credit_limit - card.current_balance);
 
   return (
@@ -45,7 +45,7 @@ export function CreditCardPortfolioItem({ card, onSelect, onEdit, onDelete }: Cr
                   </p>
                 </div>
                 <div className={cn('rounded-full bg-black/30 px-3 py-1 text-[11px] font-semibold backdrop-blur', utilizationColor)}>
-                  {utilization.toFixed(0)}% used
+                  {utilization.toFixed(0)}% usado
                 </div>
               </div>
 
@@ -57,15 +57,15 @@ export function CreditCardPortfolioItem({ card, onSelect, onEdit, onDelete }: Cr
                     <p className="font-semibold drop-shadow">{formatUSD(card.current_balance)}</p>
                   </div>
                   <div>
-                    <span className="opacity-65">Limit</span>
+                    <span className="opacity-65">Limite</span>
                     <p className="font-semibold drop-shadow">{formatUSD(card.credit_limit)}</p>
                   </div>
                   <div>
-                    <span className="opacity-65">Closes</span>
+                    <span className="opacity-65">Cierra</span>
                     <p className="font-semibold drop-shadow">{getOrdinal(card.closing_date)}</p>
                   </div>
                   <div>
-                    <span className="opacity-65">Due</span>
+                    <span className="opacity-65">Paga</span>
                     <p className="font-semibold drop-shadow">{getOrdinal(card.due_date)}</p>
                   </div>
                 </div>
@@ -73,10 +73,10 @@ export function CreditCardPortfolioItem({ card, onSelect, onEdit, onDelete }: Cr
             </div>
 
             <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
-              <CardInfoBlock label="Available Credit" value={formatUSD(available)} tone="positive" />
-              <CardInfoBlock label="Current Balance" value={formatUSD(card.current_balance)} />
+              <CardInfoBlock label="Credito disponible" value={formatUSD(available)} tone="positive" />
+              <CardInfoBlock label="Balance actual" value={formatUSD(card.current_balance)} />
               <CardInfoBlock
-                label="Utilization Status"
+                label="Estado de uso"
                 value={utilizationLabel}
                 tone={utilization < 30 ? 'positive' : utilization < 50 ? 'warning' : 'negative'}
               />
@@ -92,7 +92,7 @@ export function CreditCardPortfolioItem({ card, onSelect, onEdit, onDelete }: Cr
             onEdit(card);
           }}
           className="rounded-xl border border-white/15 bg-black/45 p-2 text-white/85 backdrop-blur hover:bg-black/65 hover:text-white"
-          aria-label={`Edit ${card.card_name}`}
+          aria-label={`Editar ${card.card_name}`}
         >
           <Pencil className="h-4 w-4" />
         </button>
@@ -102,7 +102,7 @@ export function CreditCardPortfolioItem({ card, onSelect, onEdit, onDelete }: Cr
             onDelete(card.id);
           }}
           className="rounded-xl border border-white/15 bg-black/45 p-2 text-white/85 backdrop-blur hover:bg-destructive hover:text-white"
-          aria-label={`Delete ${card.card_name}`}
+          aria-label={`Eliminar ${card.card_name}`}
         >
           <Trash2 className="h-4 w-4" />
         </button>

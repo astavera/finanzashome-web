@@ -12,11 +12,11 @@ export function ResetSettings() {
       <div className="glass-card p-6">
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="font-display font-semibold text-destructive">Reset Sample Data</h3>
-            <p className="text-xs text-muted-foreground mt-1">Restore all data to original seeded values</p>
+            <h3 className="font-display font-semibold text-destructive">Restablecer datos de ejemplo</h3>
+            <p className="text-xs text-muted-foreground mt-1">Restaura los datos a los valores iniciales</p>
           </div>
           <Button variant="destructive" size="sm" className="gap-2" onClick={() => setShowReset(true)}>
-            <RotateCcw className="w-4 h-4" /> Reset
+            <RotateCcw className="w-4 h-4" /> Restablecer
           </Button>
         </div>
       </div>
@@ -24,10 +24,10 @@ export function ResetSettings() {
       <DeleteConfirmation
         open={showReset}
         onOpenChange={setShowReset}
-        title="Reset All Data"
-        description="This will restore all data to the original sample values. All your changes will be lost."
+        title="Restablecer todos los datos"
+        description="Esto restaurara los datos a los valores de ejemplo originales. Se perderan tus cambios."
         onConfirm={() => {
-          toast.error('Reset sample data is no longer wired to local storage. Use Supabase seed/reset flow instead.');
+          toast.error('El restablecimiento local ya no esta conectado. Usa el flujo de seed/reset de Supabase.');
           setShowReset(false);
         }}
       />

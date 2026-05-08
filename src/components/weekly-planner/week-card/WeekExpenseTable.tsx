@@ -3,6 +3,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { formatUSD } from '@/lib/currency';
 import { cn } from '@/lib/utils';
 import { PAID_BY_OPTIONS, type WeeklyExpense } from '@/lib/types';
+import { statusLabel } from '@/lib/labels';
 
 type WeekExpenseTableProps = {
   expenses: WeeklyExpense[];
@@ -26,10 +27,10 @@ export function WeekExpenseTable({
       <table className="w-full text-[11px]">
         <thead>
           <tr className="planner-table-head">
-            <th className="px-2 py-1 text-left font-medium text-muted-foreground">Concept</th>
-            <th className="px-2 py-1 text-right font-medium text-muted-foreground">Amount</th>
+            <th className="px-2 py-1 text-left font-medium text-muted-foreground">Concepto</th>
+            <th className="px-2 py-1 text-right font-medium text-muted-foreground">Monto</th>
             <th className="px-2 py-1 text-center font-medium text-muted-foreground">Quien pago</th>
-            <th className="px-2 py-1 text-center font-medium text-muted-foreground">Status</th>
+            <th className="px-2 py-1 text-center font-medium text-muted-foreground">Estado</th>
             <th className="w-8 px-2 py-1.5"></th>
           </tr>
         </thead>
@@ -68,7 +69,7 @@ export function WeekExpenseTable({
                           : 'text-muted-foreground hover:bg-muted hover:text-foreground',
                       )}
                     >
-                      {status}
+                      {statusLabel(status)}
                     </button>
                   ))}
                 </div>
@@ -82,13 +83,13 @@ export function WeekExpenseTable({
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="bg-card border-border">
                     <DropdownMenuItem onClick={() => onEdit(expense)}>
-                      <Pencil className="w-3 h-3 mr-2" /> Edit
+                      <Pencil className="w-3 h-3 mr-2" /> Editar
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => onStatusChange(expense.id, 'Partial')}>
-                      Mark Partial
+                      Marcar parcial
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => onDelete(expense.id)} className="text-destructive">
-                      <Trash2 className="w-3 h-3 mr-2" /> Delete
+                      <Trash2 className="w-3 h-3 mr-2" /> Eliminar
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>

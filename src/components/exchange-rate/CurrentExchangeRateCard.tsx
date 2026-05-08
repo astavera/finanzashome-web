@@ -9,7 +9,7 @@ type CurrentExchangeRateCardProps = {
 export function CurrentExchangeRateCard({ exchangeRate }: CurrentExchangeRateCardProps) {
   return (
     <div className="glass-card p-8 text-center">
-      <p className="text-xs text-muted-foreground uppercase tracking-widest mb-3">Current Remitly Rate</p>
+      <p className="text-xs text-muted-foreground uppercase tracking-widest mb-3">Tasa actual de Remitly</p>
       <div className="flex items-center justify-center gap-3 mb-4">
         <span className="text-lg font-medium">1 USD</span>
         <ArrowRightLeft className="w-5 h-5 text-primary" />
@@ -18,7 +18,7 @@ export function CurrentExchangeRateCard({ exchangeRate }: CurrentExchangeRateCar
         </span>
       </div>
       <div className="flex items-center justify-center gap-3 text-xs text-muted-foreground">
-        <span>Last updated: {exchangeRate.last_updated}</span>
+        <span>Ultima actualizacion: {exchangeRate.last_updated}</span>
         <span
           className={cn(
             'inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px]',
@@ -27,7 +27,7 @@ export function CurrentExchangeRateCard({ exchangeRate }: CurrentExchangeRateCar
         >
           {exchangeRate.source === 'live' ? (
             <>
-              <Wifi className="w-3 h-3" /> Live
+              <Wifi className="w-3 h-3" /> En vivo
             </>
           ) : (
             <>

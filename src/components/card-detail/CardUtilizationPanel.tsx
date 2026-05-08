@@ -14,10 +14,10 @@ export function CardUtilizationPanel({ utilization, utilizationColor, maxFor30, 
   return (
     <div className="glass-card p-5">
       <div className="flex items-center justify-between mb-2">
-        <span className="text-xs text-muted-foreground">Credit Utilization</span>
+        <span className="text-xs text-muted-foreground">Uso de credito</span>
         <span className={cn('text-xs font-semibold', utilizationColor)}>
           {utilization < 30 ? <CheckCircle2 className="w-3 h-3 inline mr-1" /> : <AlertTriangle className="w-3 h-3 inline mr-1" />}
-          {utilization < 30 ? 'Good' : utilization < 50 ? 'Warning' : 'High'}
+          {utilization < 30 ? 'Bien' : utilization < 50 ? 'Alerta' : 'Alto'}
         </span>
       </div>
       <Progress value={Math.min(utilization, 100)} className="h-3" />

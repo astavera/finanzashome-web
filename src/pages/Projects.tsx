@@ -60,12 +60,12 @@ export default function Projects() {
     mutationFn: createProject,
     onSuccess: async () => {
       await invalidateProjectQueries();
-      toast.success('Goal created');
+      toast.success('Meta creada');
       setEditingProject(null);
       setShowForm(false);
     },
     onError: (mutationError) => {
-      toast.error(mutationError instanceof Error ? mutationError.message : 'Unable to create goal');
+      toast.error(mutationError instanceof Error ? mutationError.message : 'No se pudo crear la meta');
     },
   });
 
@@ -73,12 +73,12 @@ export default function Projects() {
     mutationFn: ({ id, updates }: { id: string; updates: Partial<Project> }) => updateProject(id, updates),
     onSuccess: async () => {
       await invalidateProjectQueries();
-      toast.success('Goal updated');
+      toast.success('Meta actualizada');
       setEditingProject(null);
       setShowForm(false);
     },
     onError: (mutationError) => {
-      toast.error(mutationError instanceof Error ? mutationError.message : 'Unable to update goal');
+      toast.error(mutationError instanceof Error ? mutationError.message : 'No se pudo actualizar la meta');
     },
   });
 
@@ -86,11 +86,11 @@ export default function Projects() {
     mutationFn: deleteProject,
     onSuccess: async () => {
       await invalidateProjectQueries();
-      toast.success('Goal deleted');
+      toast.success('Meta eliminada');
       setDeleteId(null);
     },
     onError: (mutationError) => {
-      toast.error(mutationError instanceof Error ? mutationError.message : 'Unable to delete goal');
+      toast.error(mutationError instanceof Error ? mutationError.message : 'No se pudo eliminar la meta');
     },
   });
 
@@ -116,11 +116,11 @@ export default function Projects() {
     <div className="max-w-6xl mx-auto space-y-8 animate-fade-in">
       <ProjectsHeader viewMode={viewMode} onViewModeChange={setViewMode} onAddGoal={handleAddGoal} />
 
-      {isLoading && <div className="glass-card p-12 text-center text-muted-foreground">Loading goals...</div>}
+      {isLoading && <div className="glass-card p-12 text-center text-muted-foreground">Cargando metas...</div>}
 
       {error && (
         <div className="glass-card p-12 text-center text-destructive">
-          {error instanceof Error ? error.message : 'Unable to load goals'}
+          {error instanceof Error ? error.message : 'No se pudieron cargar las metas'}
         </div>
       )}
 
@@ -136,8 +136,8 @@ export default function Projects() {
         <div className="glass-card p-4">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-xs uppercase text-muted-foreground">{currentYear} goal counter</p>
-              <h3 className="font-display text-lg font-semibold">Collected from fixed weekly payments</h3>
+              <p className="text-xs uppercase text-muted-foreground">Contador de metas {currentYear}</p>
+              <h3 className="font-display text-lg font-semibold">Cobrado desde pagos fijos semanales</h3>
             </div>
             <div className="grid grid-cols-2 gap-2 sm:min-w-72">
               <div className="rounded-lg bg-secondary/30 p-3 text-right">
@@ -155,8 +155,8 @@ export default function Projects() {
 
       {!isLoading && !error && viewMode !== 'COP' && (
         <ProjectGroupSection
-          title="USD Goals"
-          emptyText="No USD goals yet. Add one above!"
+          title="Metas en USD"
+          emptyText="Aun no hay metas en USD. Agrega una arriba."
           projects={usdProjects}
           exchangeRate={exchangeRate}
           yearlyCollections={yearlyCollections}
@@ -171,8 +171,8 @@ export default function Projects() {
 
       {!isLoading && !error && viewMode !== 'USD' && (
         <ProjectGroupSection
-          title="Colombia Goals (COP)"
-          emptyText="No Colombia goals yet. Add one above!"
+          title="Metas de Colombia (COP)"
+          emptyText="Aun no hay metas de Colombia. Agrega una arriba."
           projects={copProjects}
           exchangeRate={exchangeRate}
           yearlyCollections={yearlyCollections}
@@ -198,8 +198,8 @@ export default function Projects() {
       <DeleteConfirmation
         open={!!deleteId}
         onOpenChange={() => setDeleteId(null)}
-        title="Delete Goal"
-        description="This will permanently remove this savings goal."
+        title="Eliminar meta"
+        description="Esto eliminara permanentemente esta meta de ahorro."
         onConfirm={() => {
           if (deleteId) deleteProjectMutation.mutate(deleteId);
         }}

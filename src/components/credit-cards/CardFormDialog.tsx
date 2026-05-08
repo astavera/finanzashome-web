@@ -52,20 +52,20 @@ export function CardFormDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="border-border bg-card max-w-md">
         <DialogHeader>
-          <DialogTitle className="font-display">{initialData ? 'Edit Card' : 'Add Credit Card'}</DialogTitle>
+          <DialogTitle className="font-display">{initialData ? 'Editar tarjeta' : 'Agregar tarjeta de credito'}</DialogTitle>
         </DialogHeader>
         <div className="space-y-3">
           <div>
-            <Label className="text-xs text-muted-foreground">Card Name</Label>
-            <Input value={form.card_name} onChange={(e) => setForm({ ...form, card_name: e.target.value })} className="mt-1 bg-secondary/30" placeholder="e.g. Apple Card" />
+            <Label className="text-xs text-muted-foreground">Nombre de la tarjeta</Label>
+            <Input value={form.card_name} onChange={(e) => setForm({ ...form, card_name: e.target.value })} className="mt-1 bg-secondary/30" placeholder="Ej. Apple Card" />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <Label className="text-xs text-muted-foreground">Issuer/Bank</Label>
+              <Label className="text-xs text-muted-foreground">Banco emisor</Label>
               <Input value={form.issuer} onChange={(e) => setForm({ ...form, issuer: e.target.value })} className="mt-1 bg-secondary/30" />
             </div>
             <div>
-              <Label className="text-xs text-muted-foreground">Network</Label>
+              <Label className="text-xs text-muted-foreground">Red</Label>
               <select value={form.network} onChange={(e) => setForm({ ...form, network: e.target.value })} className="mt-1 w-full rounded-lg border border-border bg-secondary/30 px-3 py-2 text-sm">
                 <option>Visa</option><option>Mastercard</option><option>Amex</option><option>Discover</option>
               </select>
@@ -73,26 +73,26 @@ export function CardFormDialog({
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <Label className="text-xs text-muted-foreground">Last 4 Digits</Label>
+              <Label className="text-xs text-muted-foreground">Ultimos 4 digitos</Label>
               <Input value={form.last4} maxLength={4} onChange={(e) => setForm({ ...form, last4: e.target.value })} className="mt-1 bg-secondary/30" />
             </div>
             <div>
-              <Label className="text-xs text-muted-foreground">Credit Limit</Label>
+              <Label className="text-xs text-muted-foreground">Limite de credito</Label>
               <Input type="number" value={form.credit_limit} onChange={(e) => setForm({ ...form, credit_limit: e.target.value })} className="mt-1 bg-secondary/30" />
             </div>
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <Label className="text-xs text-muted-foreground">Closing Date (day)</Label>
+              <Label className="text-xs text-muted-foreground">Fecha de cierre (dia)</Label>
               <Input type="number" min={1} max={31} value={form.closing_date} onChange={(e) => setForm({ ...form, closing_date: e.target.value })} className="mt-1 bg-secondary/30" />
             </div>
             <div>
-              <Label className="text-xs text-muted-foreground">Due Date (day)</Label>
+              <Label className="text-xs text-muted-foreground">Fecha de pago (dia)</Label>
               <Input type="number" min={1} max={31} value={form.due_date} onChange={(e) => setForm({ ...form, due_date: e.target.value })} className="mt-1 bg-secondary/30" />
             </div>
           </div>
           <div>
-            <Label className="text-xs text-muted-foreground">Card Image URL (optional)</Label>
+            <Label className="text-xs text-muted-foreground">URL de imagen de la tarjeta (opcional)</Label>
             <Input value={form.image_url} onChange={(e) => setForm({ ...form, image_url: e.target.value })} className="mt-1 bg-secondary/30" placeholder="https://..." />
           </div>
           <Button className="w-full" disabled={saving} onClick={() => {
@@ -111,7 +111,7 @@ export function CardFormDialog({
                 image_url: form.image_url || undefined,
               });
             }
-          }}>{saving ? 'Saving...' : initialData ? 'Save Changes' : 'Add Card'}</Button>
+          }}>{saving ? 'Guardando...' : initialData ? 'Guardar cambios' : 'Agregar tarjeta'}</Button>
         </div>
       </DialogContent>
     </Dialog>
